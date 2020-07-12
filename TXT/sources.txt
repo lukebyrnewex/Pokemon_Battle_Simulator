@@ -1,0 +1,20 @@
+## CSV FILES
+pokemon_list.csv (edited to include relevant information, based on the following dataset)
+	Source: https://www.kaggle.com/tlegrand/pokemon-with-stats-generation-8
+
+pokemon_lore.csv
+	Source: my own csv from information at Serebii.net and Bulbapedia
+
+pokemon_moves.csv (unchanged)
+	Source: https://github.com/christophercao1/Pokemon-Simulator-in-Python/blob/master/Pokemon%20Moves.csv
+
+pokemon_natures.csv
+	Source: my own csv from information at https://www.serebii.net/games/natures.shtml
+
+pokemon_type_effectiveness.csv
+	Source: https://github.com/zonination/pokemon-chart/blob/master/chart.csv	
+
+## FORMULAE
+Damage formulae and various Pokémon-related details and information from:
+    Serebii.net
+    Bulbapedia
