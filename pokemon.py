@@ -1,7 +1,8 @@
 import csv
-
+import math
 import moves
 import utilities
+from pathlib import Path
 
 TEST_LEVEL = 100
 STAT_AMOUNT = 6
@@ -9,6 +10,11 @@ IV_MAX = 31
 IV_MAX_TOTAL = IV_MAX * 6
 EV_MAX = 255
 EV_MAX_TOTAL = EV_MAX * 2
+
+data_folder = Path("D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
+file_pokemon_list = data_folder / "pokemon_list.csv"
+file_pokemon_lore = data_folder / "pokemon_lore.csv"
+file_pokemon_natures = data_folder / "pokemon_natures.csv"
 
 
 # The actual Pokémon and their stats
@@ -30,18 +36,43 @@ class Pokemon:
         # Known Moves (<=4)
         self.moves = pokemon_moves
 
-        # Battle Stats (as initialised)
-        self.current_stats = base_stats
-
         # Complex values to Pokémon
         self.nature = nature
         self.ivs = ivs
         self.evs = evs
 
+        # Determined stats = Base stats + IV/EV/Nature/Level etc.
+        determined_stats = self.determine_stats()
+        self.hp = determined_stats[0]
+        self.attack = determined_stats[1]
+        self.defense = determined_stats[2]
+        self.spatk = determined_stats[3]
+        self.spdef = determined_stats[4]
+        self.speed = determined_stats[5]
+
         # TODO: Future additions to the Pokémon (for Battle) - create objects for these
         self.ability = "token ability"
         self.item = "token item"
         self.gender = "token gender"
+
+    def determine_stats(self):
+        determined_stats = []
+        pro, con = define_nature(self.nature)
+
+        for i in range(STAT_AMOUNT):
+            common_formula = (
+                math.floor(
+                    ((((2 * self.base_stats[i]) + self.ivs[i])
+                      + math.floor(self.evs[i] / 4)) * self.level) / 100))
+            if i == 0:  # HP
+                determined_stats.append(common_formula + self.level + 10)
+            elif i == pro:
+                determined_stats.append(math.floor((common_formula + 5) * 1.1))
+            elif i == con:
+                determined_stats.append(math.floor((common_formula + 5) * 0.9))
+            else:
+                determined_stats.append(math.floor((common_formula + 5) * 1.0))
+        return determined_stats
 
     def print_pokemon(self):
         pokedex_no = int(self.pokedex)
@@ -77,20 +108,21 @@ class Pokemon:
 
 
 def pick_pokemon():
-    with open('CSV/pokemon_list.csv') as pokemon_csv:
+    with open(file_pokemon_list) as pokemon_csv:
         csv_reader = csv.reader(pokemon_csv, delimiter=',')
         pokemon_choice = input("Type a Pokémon's name:")
         for row in csv_reader:
             if pokemon_choice == row[1]:
                 typing = [row[2], row[3]]
                 base_stats = [
-                    row[4], row[5], row[6],
-                    row[7], row[8], row[9],
-                    row[10]]
+                    row[4], row[5], row[6],  # HP, Attack, Defense
+                    row[7], row[8], row[9],  # SpAtk, SpDef, Speed
+                    row[10]]  # Base Stat Total
+                base_stats = utilities.str_list_to_int(base_stats)
                 selected_moves = moves.pick_moves()
                 nature, ivs, evs = pick_stats()
                 return Pokemon(
-                    row[0], row[1], TEST_LEVEL,
+                    int(row[0]), row[1], TEST_LEVEL,
                     typing, base_stats, selected_moves,
                     nature, ivs, evs)
         print(f'{pokemon_choice} could not be found. Try again.')
@@ -102,20 +134,20 @@ def pick_stats():
     print_all_natures()
     print(
         f'Firstly, we much select a nature.'
-        f'\n{utilities.csv_extractor("CSV/pokemon_lore.csv", "title", "description", "nature_values")}')
+        f'\n{utilities.csv_extractor(file_pokemon_lore, "title", "description", "nature_values")}')
     selected_nature = pick_nature_parser()
 
     # IVs and EVs
-    print(utilities.csv_extractor("CSV/pokemon_lore.csv", "title", "description", "individual_values"))
+    print(utilities.csv_extractor(file_pokemon_lore, "title", "description", "individual_values"))
 
-    print(utilities.csv_extractor("CSV/pokemon_lore.csv", "title", "description", "effort_values"))
+    print(utilities.csv_extractor(file_pokemon_lore, "title", "description", "effort_values"))
     selected_ivs, selected_evs = pokemon_value_input("iv"), pokemon_value_input("ev")
 
     return selected_nature, selected_ivs, selected_evs
 
 
 def print_nature(nature):
-    with open('CSV/pokemon_natures.csv') as natures_csv:
+    with open(file_pokemon_natures) as natures_csv:
         natures_reader = csv.reader(natures_csv, delimiter=',')
         for row in natures_reader:
             if row[0] == nature:
@@ -125,7 +157,7 @@ def print_nature(nature):
 
 
 def print_all_natures():
-    with open('CSV/pokemon_natures.csv') as natures_csv:
+    with open(file_pokemon_natures) as natures_csv:
         csv_reader = csv.reader(natures_csv, delimiter=',')
         for row in csv_reader:
             print(f'{row[0]} (+{row[1]}, -{row[2]}')
@@ -134,7 +166,7 @@ def print_all_natures():
 def pick_nature_parser():
     # Documenting accepted natures
     accepted_natures = []
-    with open('CSV/pokemon_natures.csv') as natures_csv:
+    with open(file_pokemon_natures) as natures_csv:
         natures_reader = csv.reader(natures_csv, delimiter=',')
         next(natures_reader)  # Skip first line
         for row in natures_reader:
@@ -149,6 +181,24 @@ def pick_nature_parser():
                 return nature_input
         except ValueError:
             print("That's not a correct nature! Try again.")
+
+
+def define_nature(nature):
+    nature_dict = {
+        "Attack": 1,
+        "Defense": 2,
+        "SpAttack": 3,
+        "SpDefense": 4,
+        "Speed": 5
+    }
+
+    with open(file_pokemon_natures) as pokemon_natures:
+        natures_reader = csv.reader(pokemon_natures, delimiter=",")
+        for row in natures_reader:
+            if row[0].strip() == nature:
+                pro = nature_dict[row[1].strip()]
+                con = nature_dict[row[2].strip()]
+        return pro, con
 
 
 def pokemon_value_input(value_type):

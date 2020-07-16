@@ -1,8 +1,13 @@
 import csv
+from pathlib import Path
 
 MOVES_PER_POKEMON = 4
 
-with open('CSV/pokemon_moves.csv') as pokemon_moves:
+data_folder = Path("D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
+file_moves_csv = data_folder / "pokemon_moves.csv"
+
+
+with open(file_moves_csv) as pokemon_moves:
     csv_reader = csv.reader(pokemon_moves, delimiter=',')
     MOVE_TOTAL = len(list(csv_reader)) - 2
 
@@ -25,7 +30,7 @@ class Move:
 
 def pick_moves():
     moves = []
-    with open('CSV/pokemon_moves.csv') as pokemon_moves_list:
+    with open(file_moves_csv) as pokemon_moves_list:
         movelist = csv.reader(pokemon_moves_list, delimiter=',')
         print_movelist()
 
@@ -46,7 +51,7 @@ def pick_moves():
 
 
 def print_movelist():
-    with open('CSV/pokemon_moves.csv') as movelist_csv:
+    with open(file_moves_csv) as movelist_csv:
         movelist = csv.reader(movelist_csv, delimiter=',')
         for row in movelist:
             print(f'#{row[0]}\t{row[1]}')
