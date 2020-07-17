@@ -382,7 +382,7 @@
 321,Wailord,Rock,Bug,170,90,45,90,45,60,500,3
 322,Numel,Water,nan,60,60,40,65,45,35,305,3
 323,Camerupt,Water,nan,70,100,70,105,75,40,460,3
-323,Camerupt-Mega Camerupt),Normal,nan,70,120,100,145,105,20,560,3
+323,Camerupt-Mega,Normal,nan,70,120,100,145,105,20,560,3
 324,Torkoal,Normal,nan,70,85,140,85,70,20,470,3
 325,Spoink,Ghost,nan,60,25,35,70,80,60,330,3
 326,Grumpig,Ghost,nan,80,45,65,90,110,80,470,3
@@ -394,7 +394,7 @@
 332,Cacturne,Dark,nan,70,115,60,115,60,55,475,3
 333,Swablu,Dark,nan,45,40,60,40,75,50,310,3
 334,Altaria,Psychic,nan,75,70,90,70,105,80,490,3
-334,Altaria-Mega Altaria),Ice,nan,75,110,110,110,105,80,590,3
+334,Altaria-Mega,Ice,nan,75,110,110,110,105,80,590,3
 335,Zangoose,Ice,nan,73,115,60,60,60,90,458,3
 336,Seviper,Ice,nan,73,100,60,100,60,65,458,3
 337,Lunatone,Ice,Water,90,55,65,95,85,70,460,3
@@ -415,17 +415,17 @@
 352,Kecleon,Steel,Psychic,60,90,70,60,120,40,440,3
 353,Shuppet,Rock,nan,44,75,35,63,33,45,295,3
 354,Banette,Ice,nan,64,115,65,83,63,65,455,3
-354,Banette-Mega Banette),Steel,nan,64,165,75,93,83,75,555,3
+354,Banette-Mega,Steel,nan,64,165,75,93,83,75,555,3
 355,Duskull,Dragon,Psychic,20,40,90,30,90,25,295,3
 356,Dusclops,Dragon,Psychic,40,70,130,60,130,25,455,3
 357,Tropius,Dragon,Psychic,99,68,83,72,87,51,460,3
 358,Chimecho,Dragon,Psychic,75,50,80,95,90,65,455,3
 359,Absol,Water,nan,65,130,60,75,60,75,465,3
-359,Absol-Mega Absol),Water,nan,65,150,60,115,60,115,565,3
+359,Absol-Mega,Water,nan,65,150,60,115,60,115,565,3
 360,Wynaut,Ground,nan,95,23,48,23,48,23,260,3
 361,Snorunt,Ground,Fire,50,50,50,50,50,50,300,3
 362,Glalie,Dragon,Flying,80,80,80,80,80,80,480,3
-362,Glalie-Mega Glalie),Dragon,Flying,80,120,80,120,80,100,580,3
+362,Glalie-Mega,Dragon,Flying,80,120,80,120,80,100,580,3
 363,Spheal,Steel,Psychic,70,40,50,55,50,25,290,3
 364,Sealeo,Psychic,nan,90,60,70,75,70,45,410,3
 365,Walrein,Psychic,nan,110,80,90,95,90,65,530,3
@@ -437,29 +437,29 @@
 371,Bagon,Fire,nan,45,75,60,40,30,50,300,4
 372,Shelgon,Fire,Fighting,65,95,100,60,50,50,420,4
 373,Salamence,Fire,Fighting,95,135,80,110,80,100,600,4
-373,Salamence-Mega Salamence),Water,nan,95,145,130,120,90,120,700,4
+373,Salamence-Mega,Water,nan,95,145,130,120,90,120,700,4
 374,Beldum,Water,nan,40,55,80,35,60,30,300,4
 375,Metang,Water,Steel,60,75,100,55,80,50,420,4
 376,Metagross,Normal,Flying,80,135,130,95,90,70,600,4
-376,Metagross-Mega Metagross),Normal,Flying,80,145,150,105,110,110,700,4
+376,Metagross-Mega,Normal,Flying,80,145,150,105,110,110,700,4
 377,Regirock,Normal,Flying,80,100,200,50,100,50,580,4
 378,Regice,Normal,nan,80,50,100,100,200,50,580,4
 379,Registeel,Normal,Water,80,75,150,75,150,50,580,4
 380,Latias,Bug,nan,80,80,90,110,130,110,600,4
-380,Latias-Mega Latias),Bug,nan,80,100,120,140,150,110,700,4
+380,Latias-Mega,Bug,nan,80,100,120,140,150,110,700,4
 381,Latios,Electric,nan,80,90,80,130,110,110,600,4
-381,Latios-Mega Latios),Electric,nan,80,130,100,160,120,110,700,4
+381,Latios-Mega,Electric,nan,80,130,100,160,120,110,700,4
 382,Kyogre,Electric,nan,100,100,90,150,140,90,670,4
-382,Kyogre (Primal Kyogre),Grass,Poison,100,150,90,180,160,90,770,4
+382,Kyogre-Primal,Grass,Poison,100,150,90,180,160,90,770,4
 383,Groudon,Grass,Poison,100,150,140,100,90,90,670,4
-383,Groudon (Primal Groudon),Rock,nan,100,180,160,150,90,90,770,4
+383,Groudon-Primal,Rock,nan,100,180,160,150,90,90,770,4
 384,Rayquaza,Rock,nan,105,150,90,150,90,95,680,4
-384,Rayquaza-Mega Rayquaza),Rock,Steel,105,180,100,180,100,115,780,4
+384,Rayquaza-Mega,Rock,Steel,105,180,100,180,100,115,780,4
 385,Jirachi,Rock,Steel,100,100,100,100,100,100,600,4
-386,Deoxys (Normal Forme),Bug,nan,50,150,50,150,50,150,600,4
-386,Deoxys (Attack Forme),Bug,Grass,50,180,20,180,20,150,600,4
-386,Deoxys (Defense Forme),Bug,Ground,50,70,160,70,160,90,600,4
-386,Deoxys (Speed Forme),Bug,Steel,50,95,90,95,90,180,600,4
+386,Deoxys-Normal,Bug,nan,50,150,50,150,50,150,600,4
+386,Deoxys-Attack,Bug,Grass,50,180,20,180,20,150,600,4
+386,Deoxys-Defense,Bug,Ground,50,70,160,70,160,90,600,4
+386,Deoxys-Speed,Bug,Steel,50,95,90,95,90,180,600,4
 387,Turtwig,Bug,Flying,55,68,64,45,55,31,318,4
 388,Grotle,Bug,Flying,75,89,85,55,65,36,405,4
 389,Torterra,Bug,Flying,95,109,105,75,85,56,525,4
@@ -486,9 +486,9 @@
 410,Shieldon,Steel,Psychic,30,42,118,42,88,30,350,4
 411,Bastiodon,Steel,Psychic,60,52,168,47,138,30,495,4
 412,Burmy,Rock,nan,40,29,45,29,45,36,224,4
-413,Wormadam (Plant Cloak),Psychic,Fairy,60,59,85,79,105,36,424,4
-413,Wormadam (Sandy Cloak),Normal,nan,60,79,105,59,85,36,424,4
-413,Wormadam (Trash Cloak),Normal,Flying,60,69,95,69,95,36,424,4
+413,Wormadam-Plant,Psychic,Fairy,60,59,85,79,105,36,424,4
+413,Wormadam-Sandy,Normal,nan,60,79,105,59,85,36,424,4
+413,Wormadam-Trash,Normal,Flying,60,69,95,69,95,36,424,4
 414,Mothim,Ghost,Dark,70,94,50,94,50,66,424,4
 415,Combee,Dragon,Ground,30,30,42,30,42,70,244,4
 416,Vespiquen,Dragon,Ground,70,80,102,80,102,40,474,4
@@ -504,7 +504,7 @@
 426,Drifblim,Poison,Dark,150,80,44,90,54,80,498,4
 427,Buneary,Poison,Fighting,55,66,44,44,56,85,350,4
 428,Lopunny,Poison,Fighting,65,76,84,54,96,105,480,4
-428,Lopunny-Mega Lopunny),Grass,nan,65,136,94,54,96,135,580,4
+428,Lopunny-Mega,Grass,nan,65,136,94,54,96,135,580,4
 429,Mismagius,Water,nan,60,60,60,105,105,105,495,4
 430,Honchkrow,Water,nan,100,125,52,105,52,71,505,4
 431,Glameow,Water,Flying,49,55,42,42,37,85,310,4
@@ -522,11 +522,11 @@
 443,Gible,Bug,Flying,58,70,45,40,45,42,300,4
 444,Gabite,Grass,nan,68,90,65,50,55,82,410,4
 445,Garchomp,Ice,nan,108,130,95,80,85,102,600,4
-445,Garchomp-Mega Garchomp),Ground,Flying,108,170,115,120,95,92,700,4
+445,Garchomp-Mega,Ground,Flying,108,170,115,120,95,92,700,4
 446,Munchlax,Ice,Ground,135,85,40,40,85,5,390,4
 447,Riolu,Normal,nan,40,70,40,35,40,60,285,4
 448,Lucario,Psychic,Fighting,70,110,70,115,70,90,525,4
-448,Lucario-Mega Lucario),Psychic,Fighting,70,145,88,140,70,112,625,4
+448,Lucario-Mega,Psychic,Fighting,70,145,88,140,70,112,625,4
 449,Hippopotas,Rock,Steel,68,72,78,38,42,32,330,4
 450,Hippowdon,Ghost,nan,108,112,118,68,72,47,525,4
 451,Skorupi,Ice,Ghost,40,50,90,30,55,65,330,4
@@ -539,7 +539,7 @@
 458,Mantyke,Psychic,nan,45,20,50,60,120,50,345,4
 459,Snover,Psychic,nan,60,62,50,62,60,40,334,4
 460,Abomasnow,Psychic,nan,90,92,75,92,85,60,494,4
-460,Abomasnow-Mega Abomasnow),Steel,Dragon,90,132,105,132,105,30,594,4
+460,Abomasnow-Mega,Steel,Dragon,90,132,105,132,105,30,594,4
 461,Weavile,Water,Dragon,70,120,65,45,85,125,510,4
 462,Magnezone,Fire,Steel,70,70,115,130,90,60,535,4
 463,Lickilicky,Normal,nan,110,85,95,80,95,50,515,4
@@ -555,16 +555,16 @@
 473,Mamoswine,Psychic,Fire,110,130,80,70,60,80,530,5
 474,Porygon-Z,Grass,nan,85,80,70,135,75,90,535,5
 475,Gallade,Grass,nan,68,125,65,65,115,80,518,5
-475,Gallade-Mega Gallade),Grass,nan,68,165,95,65,115,110,618,5
+475,Gallade-Mega Gallade,Grass,nan,68,165,95,65,115,110,618,5
 476,Probopass,Fire,nan,60,55,145,75,150,40,525,5
 477,Dusknoir,Fire,Fighting,45,100,135,65,135,45,525,5
 478,Froslass,Fire,Fighting,70,80,70,80,70,110,480,5
 479,Rotom,Water,nan,50,50,77,95,77,91,440,5
-479,Rotom (Heat Rotom),Water,nan,50,65,107,105,107,86,520,5
-479,Rotom (Wash Rotom),Water,nan,50,65,107,105,107,86,520,5
-479,Rotom (Frost Rotom),Normal,nan,50,65,107,105,107,86,520,5
-479,Rotom (Fan Rotom),Normal,nan,50,65,107,105,107,86,520,5
-479,Rotom (Mow Rotom),Normal,nan,50,65,107,105,107,86,520,5
+479,Rotom-Heat,Water,nan,50,65,107,105,107,86,520,5
+479,Rotom-Wash,Water,nan,50,65,107,105,107,86,520,5
+479,Rotom-Frost,Normal,nan,50,65,107,105,107,86,520,5
+479,Rotom-Fan,Normal,nan,50,65,107,105,107,86,520,5
+479,Rotom-Mow,Normal,nan,50,65,107,105,107,86,520,5
 480,Uxie,Normal,nan,75,75,130,75,130,95,580,5
 481,Mesprit,Normal,nan,80,105,105,105,105,80,580,5
 482,Azelf,Dark,nan,75,125,70,125,70,115,580,5
@@ -572,14 +572,14 @@
 484,Palkia,Grass,nan,90,120,100,150,120,100,680,5
 485,Heatran,Grass,nan,91,90,106,130,106,77,600,5
 486,Regigigas,Fire,nan,110,160,110,80,110,100,670,5
-487,Giratina (Altered Forme),Fire,nan,150,100,120,100,120,90,680,5
-487,Giratina (Origin Forme),Water,nan,150,120,100,120,100,90,680,5
+487,Giratina-Altered,Fire,nan,150,100,120,100,120,90,680,5
+487,Giratina-Origin,Water,nan,150,120,100,120,100,90,680,5
 488,Cresselia,Water,nan,120,70,120,75,130,85,600,5
 489,Phione,Psychic,nan,80,80,80,80,80,80,480,5
 490,Manaphy,Psychic,nan,100,100,100,100,100,100,600,5
 491,Darkrai,Normal,Flying,70,90,90,135,90,125,600,5
-492,Shaymin (Land Forme),Normal,Flying,100,100,100,100,100,100,600,5
-492,Shaymin (Sky Forme),Normal,Flying,100,103,75,120,75,127,600,5
+492,Shaymin-Land,Normal,Flying,100,100,100,100,100,100,600,5
+492,Shaymin-Sky,Normal,Flying,100,103,75,120,75,127,600,5
 493,Arceus,Electric,nan,120,120,120,120,120,120,720,5
 494,Victini,Electric,nan,100,100,100,100,100,100,600,5
 495,Snivy,Rock,nan,45,45,55,45,55,63,308,5
@@ -619,7 +619,7 @@
 529,Drilbur,Grass,nan,60,85,40,30,45,68,328,5
 530,Excadrill,Bug,Rock,110,135,60,50,65,88,508,5
 531,Audino,Bug,Rock,103,60,86,60,86,50,445,5
-531,Audino-Mega Audino),Dark,Fighting,103,60,126,80,126,50,545,5
+531,Audino-Mega,Dark,Fighting,103,60,126,80,126,50,545,5
 532,Timburr,Dark,Fighting,75,80,55,25,35,35,305,5
 533,Gurdurr,Psychic,Flying,85,105,85,40,50,40,405,5
 534,Conkeldurr,Ghost,nan,105,140,95,55,65,45,505,5
@@ -643,11 +643,11 @@
 552,Krokorok,Water,Flying,60,82,45,45,45,74,351,5
 553,Krookodile,Water,Flying,95,117,80,65,70,92,519,5
 554,Darumaka,Ice,nan,70,90,45,15,45,50,315,5
-554,Darumaka (Galarian form),Ice,nan,70,90,45,15,45,50,315,5
-555,Darmanitan (Standard Mode),Ice,nan,105,140,55,30,55,95,480,5
-555,Darmanitan (Zen Mode),Normal,Grass,105,30,105,140,105,55,540,5
-555,Darmanitan (Galarian form),Normal,Grass,105,140,55,30,55,95,480,5
-555,"Darmanitan (Galarian form, Zen Mode)",Electric,Flying,105,160,55,30,55,135,540,5
+554,Darumaka-G,Ice,nan,70,90,45,15,45,50,315,5
+555,Darmanitan,Ice,nan,105,140,55,30,55,95,480,5
+555,Darmanitan-Zen,Normal,Grass,105,30,105,140,105,55,540,5
+555,Darmanitan-G,Normal,Grass,105,140,55,30,55,95,480,5
+555,Darmanitan-G-Zen,Electric,Flying,105,160,55,30,55,135,540,5
 556,Maractus,Bug,nan,75,86,67,106,67,60,461,5
 557,Dwebble,Bug,Steel,50,65,85,35,35,55,325,5
 558,Crustle,Grass,Poison,70,105,125,65,75,45,485,5
@@ -655,7 +655,7 @@
 560,Scrafty,Water,Ghost,65,90,115,45,115,58,488,5
 561,Sigilyph,Water,Ghost,72,58,80,103,80,97,490,5
 562,Yamask,Water,nan,38,30,85,55,65,30,303,5
-562,Yamask (Galarian form),Bug,Electric,38,55,85,30,65,30,303,5
+562,Yamask-G,Bug,Electric,38,55,85,30,65,30,303,5
 563,Cofagrigus,Bug,Electric,58,50,145,95,105,30,483,5
 564,Tirtouga,Grass,Steel,54,78,103,53,45,22,355,5
 565,Carracosta,Grass,Steel,74,108,133,83,65,32,495,5
@@ -712,7 +712,7 @@
 616,Shelmet,Dragon,Ice,50,40,85,40,65,25,305,5
 617,Accelgor,Dragon,Ice,80,70,40,100,60,145,495,5
 618,Stunfisk,Dragon,Ice,109,66,84,81,99,32,471,5
-618,Stunfisk (Galarian form),Water,Fighting,109,81,99,66,84,32,471,5
+618,Stunfisk-G,Water,Fighting,109,81,99,66,84,32,471,5
 619,Mienfoo,Water,Fighting,45,85,50,55,50,65,350,5
 620,Mienshao,Normal,Psychic,65,125,60,95,60,105,510,5
 621,Druddigon,Normal,Fighting,77,120,90,60,90,48,485,5
@@ -735,20 +735,20 @@
 638,Cobalion,Bug,nan,91,90,129,90,72,108,580,6
 639,Terrakion,Bug,Flying,91,129,90,72,90,108,580,6
 640,Virizion,Fire,Normal,91,90,72,90,129,108,580,6
-641,Tornadus (Incarnate Forme),Fire,Normal,79,115,70,125,80,111,580,6
-641,Tornadus (Therian Forme),Fairy,nan,79,100,80,110,90,121,580,6
-642,Thundurus (Incarnate Forme),Fairy,nan,79,115,70,125,80,111,580,6
-642,Thundurus (Therian Forme),Fairy,nan,79,105,70,145,80,101,580,6
+641,Tornadus-Incarnate,Fire,Normal,79,115,70,125,80,111,580,6
+641,Tornadus-Therian,Fairy,nan,79,100,80,110,90,121,580,6
+642,Thundurus-Incarnate Forme,Fairy,nan,79,115,70,125,80,111,580,6
+642,Thundurus-Therian,Fairy,nan,79,105,70,145,80,101,580,6
 643,Reshiram,Grass,nan,100,120,100,150,120,90,680,6
 644,Zekrom,Grass,nan,100,150,120,120,100,90,680,6
-645,Landorus (Incarnate Forme),Fighting,nan,89,125,90,115,80,101,600,6
-645,Landorus (Therian Forme),Fighting,Dark,89,145,90,105,80,91,600,6
-646,Kyurem (Normal Kyurem),Normal,nan,125,130,90,130,90,95,660,6
-646,Kyurem (Black Kyurem),Psychic,nan,125,170,100,120,90,95,700,6
-646,Kyurem (White Kyurem),Psychic,nan,125,120,90,170,100,95,700,6
+645,Landorus-Incarnate,Fighting,nan,89,125,90,115,80,101,600,6
+645,Landorus-Therian,Fighting,Dark,89,145,90,105,80,91,600,6
+646,Kyurem-Normal,Normal,nan,125,130,90,130,90,95,660,6
+646,Kyurem-Black,Psychic,nan,125,170,100,120,90,95,700,6
+646,Kyurem-White,Psychic,nan,125,120,90,170,100,95,700,6
 647,Keldeo,Psychic,nan,91,72,90,129,90,108,580,6
-648,Meloetta (Aria Forme),Steel,Ghost,100,77,77,128,128,90,600,6
-648,Meloetta (Pirouette Forme),Steel,Ghost,100,128,90,77,77,128,600,6
+648,Meloetta-Aria,Steel,Ghost,100,77,77,128,128,90,600,6
+648,Meloetta-Pirouette,Steel,Ghost,100,128,90,77,77,128,600,6
 649,Genesect,Steel,Ghost,71,120,95,120,95,99,600,6
 650,Chespin,Steel,Ghost,56,61,65,48,45,38,313,6
 651,Quilladin,Fairy,nan,61,78,95,56,58,57,405,6
@@ -759,7 +759,7 @@
 656,Froakie,Dark,Psychic,41,56,40,62,44,71,314,6
 657,Frogadier,Rock,Water,54,63,52,83,56,97,405,6
 658,Greninja,Rock,Water,72,95,67,103,71,122,530,6
-658,Greninja (Ash-Greninja),Poison,Water,72,145,67,153,71,132,640,6
+658,Greninja-Ash,Poison,Water,72,145,67,153,71,132,640,6
 659,Bunnelby,Poison,Dragon,38,36,38,32,36,57,237,6
 660,Diggersby,Water,nan,85,56,77,50,77,78,423,6
 661,Fletchling,Water,nan,45,50,43,40,38,62,278,6
@@ -770,7 +770,7 @@
 666,Vivillon,Rock,Ice,80,52,50,90,50,89,411,6
 667,Litleo,Rock,Ice,62,50,58,73,54,72,369,6
 668,Pyroar,Fairy,nan,86,68,72,109,66,106,507,6
-669,FlabÃ©bÃ©,Fighting,Flying,44,38,39,61,79,42,303,6
+669,Flabébé,Fighting,Flying,44,38,39,61,79,42,303,6
 670,Floette,Electric,Fairy,54,45,47,75,98,52,371,6
 671,Florges,Rock,Fairy,78,65,68,112,154,75,552,6
 672,Skiddo,Dragon,nan,66,65,48,62,57,52,350,6
@@ -782,8 +782,8 @@
 678,Meowstic,Ghost,Grass,74,48,76,83,81,104,466,6
 679,Honedge,Ghost,Grass,45,80,100,35,37,28,325,6
 680,Doublade,Ghost,Grass,59,110,150,45,49,35,448,6
-681,Aegislash (Shield Forme),Ghost,Grass,60,50,140,50,140,60,500,6
-681,Aegislash (Blade Forme),Ghost,Grass,60,140,50,140,50,60,500,6
+681,Aegislash-Shield,Ghost,Grass,60,50,140,50,140,60,500,6
+681,Aegislash-Blade,Ghost,Grass,60,140,50,140,50,60,500,6
 682,Spritzee,Ghost,Grass,78,52,60,63,65,23,341,6
 683,Aromatisse,Ghost,Grass,101,72,72,99,89,29,462,6
 684,Swirlix,Ghost,Grass,62,48,66,59,57,49,341,6
@@ -812,27 +812,27 @@
 707,Klefki,Normal,Flying,57,80,91,80,87,75,470,7
 708,Phantump,Normal,Flying,43,70,48,50,60,38,309,7
 709,Trevenant,Normal,nan,85,110,76,65,82,56,474,7
-710,Pumpkaboo (Small Size),Normal,nan,44,66,70,44,55,56,335,7
-710,Pumpkaboo (Average Size),Bug,nan,49,66,70,44,55,51,335,7
-710,Pumpkaboo (Large Size),Bug,Electric,54,66,70,44,55,46,335,7
-710,Pumpkaboo (Super Size),Bug,Electric,59,66,70,44,55,41,335,7
-711,Gourgeist (Small Size),Fighting,nan,55,85,122,58,75,99,494,7
-711,Gourgeist (Average Size),Fighting,Ice,65,90,122,58,75,84,494,7
-711,Gourgeist (Large Size),Fire,Flying,75,95,122,58,75,69,494,7
-711,Gourgeist (Super Size),Bug,Fairy,85,100,122,58,75,54,494,7
+710,Pumpkaboo-Small,Normal,nan,44,66,70,44,55,56,335,7
+710,Pumpkaboo-Average,Bug,nan,49,66,70,44,55,51,335,7
+710,Pumpkaboo-Large,Bug,Electric,54,66,70,44,55,46,335,7
+710,Pumpkaboo-Super,Bug,Electric,59,66,70,44,55,41,335,7
+711,Gourgeist-Small,Fighting,nan,55,85,122,58,75,99,494,7
+711,Gourgeist-Average,Fighting,Ice,65,90,122,58,75,84,494,7
+711,Gourgeist-Large,Fire,Flying,75,95,122,58,75,69,494,7
+711,Gourgeist-Super,Bug,Fairy,85,100,122,58,75,54,494,7
 712,Bergmite,Bug,Fairy,55,69,85,32,35,28,304,7
 713,Avalugg,Rock,nan,95,117,184,44,46,28,514,7
 714,Noibat,Rock,nan,40,30,35,45,40,55,245,7
 715,Noivern,Water,nan,85,70,80,97,80,123,535,7
 716,Xerneas,Poison,Water,126,131,95,131,98,99,680,7
 717,Yveltal,Poison,Water,126,131,95,131,98,99,680,7
-718,Zygarde (50% Forme),Ground,nan,108,100,121,81,95,95,600,7
-718,Zygarde (10% Forme),Ground,nan,54,100,71,61,85,115,486,7
-718,Zygarde (Complete Forme),Water,Bug,216,100,121,91,95,85,708,7
+718,Zygarde-50%,Ground,nan,108,100,121,81,95,95,600,7
+718,Zygarde-10%,Ground,nan,54,100,71,61,85,115,486,7
+718,Zygarde-Complete,Water,Bug,216,100,121,91,95,85,708,7
 719,Diancie,Water,Bug,50,100,150,100,150,50,600,7
-719,Diancie-Mega Diancie),Grass,nan,50,160,110,160,110,110,700,7
-720,Hoopa (Hoopa Confined),Grass,nan,80,110,60,150,130,70,600,7
-720,Hoopa (Hoopa Unbound),Grass,Fairy,80,160,60,170,130,80,680,7
+719,Diancie-Mega,Grass,nan,50,160,110,160,110,110,700,7
+720,Hoopa-Confined,Grass,nan,80,110,60,150,130,70,600,7
+720,Hoopa-Unbound,Grass,Fairy,80,160,60,170,130,80,680,7
 721,Volcanion,Grass,Fairy,80,110,120,130,90,70,600,7
 722,Rowlet,Poison,Fire,68,55,55,50,50,42,320,7
 723,Dartrix,Poison,Fire,78,75,75,70,70,52,420,7
@@ -857,11 +857,11 @@
 742,Cutiefly,Electric,Steel,40,45,40,55,40,84,304,7
 743,Ribombee,Ghost,Fairy,60,55,60,95,70,124,464,7
 744,Rockruff,Water,Psychic,45,65,40,30,40,60,280,7
-745,Lycanroc (Midday Form),Normal,Dragon,75,115,65,55,65,112,487,7
-745,Lycanroc (Midnight Form),Ghost,Grass,85,115,75,55,75,82,487,7
-745,Lycanroc (Dusk Form),Dragon,nan,75,117,65,55,65,110,487,7
-746,Wishiwashi (Solo Form),Dragon,Fighting,45,20,20,25,25,40,175,7
-746,Wishiwashi (School Form),Dragon,Fighting,45,140,130,140,135,30,620,7
+745,Lycanroc-Midday,Normal,Dragon,75,115,65,55,65,112,487,7
+745,Lycanroc-Midnight,Ghost,Grass,85,115,75,55,75,82,487,7
+745,Lycanroc-Dusk,Dragon,nan,75,117,65,55,65,110,487,7
+746,Wishiwashi-Solo,Dragon,Fighting,45,20,20,25,25,40,175,7
+746,Wishiwashi-School,Dragon,Fighting,45,140,130,140,135,30,620,7
 747,Mareanie,Electric,Fairy,50,53,62,43,52,45,305,7
 748,Toxapex,Psychic,Fairy,50,63,152,53,142,35,495,7
 749,Mudbray,Grass,Fairy,70,100,70,45,55,45,385,7
@@ -889,8 +889,8 @@
 771,Pyukumuku,Water,nan,55,60,130,30,130,5,410,8
 772,Type: Null,Normal,nan,95,95,95,95,95,59,534,8
 773,Silvally,Normal,nan,95,95,95,95,95,95,570,8
-774,Minior (Meteor Form),Rock,Flying,60,60,100,60,100,60,440,8
-774,Minior (Core Form),Rock,Flying,60,100,60,100,60,120,500,8
+774,Minior-Meteor,Rock,Flying,60,60,100,60,100,60,440,8
+774,Minior-Core,Rock,Flying,60,100,60,100,60,120,500,8
 775,Komala,Normal,nan,65,115,65,75,95,65,480,8
 776,Turtonator,Fire,Dragon,60,78,135,91,85,36,485,8
 777,Togedemaru,Electric,Steel,65,98,63,40,73,96,435,8
@@ -919,9 +919,9 @@
 798,Kartana,Grass,Steel,59,181,131,59,31,109,570,8
 799,Guzzlord,Dark,Dragon,223,101,53,97,53,43,570,8
 800,Necrozma,Psychic,nan,97,107,101,127,89,79,600,8
-800,Necrozma (Dusk Mane),Psychic,Steel,97,157,127,113,109,77,680,8
-800,Necrozma (Dawn Wings),Psychic,Ghost,97,113,109,157,127,77,680,8
-800,Necrozma (Ultra Necrozma),Psychic,Dragon,97,167,97,167,97,129,754,8
+800,Necrozma-Dusk,Psychic,Steel,97,157,127,113,109,77,680,8
+800,Necrozma-Dawn,Psychic,Ghost,97,113,109,157,127,77,680,8
+800,Necrozma-Ultra,Psychic,Dragon,97,167,97,167,97,129,754,8
 801,Magearna,Steel,Fairy,80,95,115,130,115,65,600,8
 802,Marshadow,Fighting,Ghost,90,125,80,90,90,125,600,8
 803,Poipole,Poison,nan,67,73,67,73,67,73,420,8
@@ -962,18 +962,16 @@
 838,Carkol,Rock,Fire,80,60,90,60,70,50,410,8
 839,Coalossal,Rock,Fire,110,80,120,80,90,30,510,8
 840,Applin,Grass,Dragon,40,40,80,40,40,20,260,8
-841,Flapple,"Grass
-",Dragon,70,110,80,95,60,70,485,8
-842,Appletun,Grass,"Dragon
-",110,85,80,100,80,30,485,8
+841,Flapple,Grass,Dragon,70,110,80,95,60,70,485,8
+842,Appletun,Grass,Dragon,110,85,80,100,80,30,485,8
 843,Silicobra,Ground,nan,52,57,75,35,50,46,315,8
 844,Sandaconda,Ground,nan,72,107,125,65,70,71,510,8
 845,Cramorant,Flying,Water,70,85,55,85,95,85,475,8
 846,Arrokuda,Water,nan,41,63,40,40,30,66,280,8
 847,Barraskewda,Water,nan,61,123,60,60,50,136,490,8
 848,Toxel,Electric,Poison,40,38,35,54,35,40,242,8
-849,Toxtricity (Amped Form),Electric,Poison,75,98,70,114,70,75,502,8
-849,Toxtricity (Low Key Form),Electric,Poison,75,98,70,114,70,75,502,8
+849,Toxtricity-Amped,Electric,Poison,75,98,70,114,70,75,502,8
+849,Toxtricity-Low_Key,Electric,Poison,75,98,70,114,70,75,502,8
 850,Sizzlipede,Fire,Bug,50,65,45,50,50,45,305,8
 851,Centiskorch,Fire,Bug,100,115,65,90,90,65,525,8
 852,Clobbopus,Fighting,nan,50,68,60,50,50,32,310,8
@@ -999,10 +997,10 @@
 872,Snom,Ice,Bug,30,25,35,45,30,20,185,8
 873,Frosmoth,Ice,Bug,70,65,60,125,90,65,475,8
 874,Stonjourner,Rock,nan,100,125,135,20,20,70,470,8
-875,Eiscue (Ice Face),Ice,nan,75,80,110,65,90,50,470,8
-875,Eiscue (Noice Face),Ice,nan,75,80,70,65,50,130,470,8
-876,Indeedee (Male),Psychic,Normal,60,65,55,105,95,95,475,8
-876,Indeedee (Female),Psychic,Normal,70,55,65,95,105,85,475,8
+875,Eiscue-Ice,Ice,nan,75,80,110,65,90,50,470,8
+875,Eiscue-Noice,Ice,nan,75,80,70,65,50,130,470,8
+876,Indeedee-M,Psychic,Normal,60,65,55,105,95,95,475,8
+876,Indeedee-F,Psychic,Normal,70,55,65,95,105,85,475,8
 877,Morpeko,Electric,Dark,58,95,58,70,58,97,436,8
 878,Cufant,Steel,nan,72,80,49,40,49,40,330,8
 879,Copperajah,Steel,nan,122,130,69,80,69,30,500,8
@@ -1014,13 +1012,13 @@
 885,Dreepy,Dragon,Ghost,28,60,30,40,30,82,270,8
 886,Drakloak,Dragon,Ghost,68,80,50,60,50,102,410,8
 887,Dragapult,Dragon,Ghost,88,120,75,100,75,142,600,8
-888,Zacian (Hero of Many Battles),Fairy,nan,92,130,115,80,115,138,670,8
-888,Zacian (Crowned Sword),Fairy,Steel,92,170,115,80,115,148,720,8
-889,Zamazenta (Hero of Many Battles),Fighting,nan,92,130,115,80,115,138,670,8
-889,Zamazenta (Crowned Shield),Fighting,Steel,92,130,145,80,145,128,720,8
+888,Zacian-Hero,Fairy,nan,92,130,115,80,115,138,670,8
+888,Zacian-Crowned_Sword,Fairy,Steel,92,170,115,80,115,148,720,8
+889,Zamazenta-Hero,Fighting,nan,92,130,115,80,115,138,670,8
+889,Zamazenta-Crowned_Shield,Fighting,Steel,92,130,145,80,145,128,720,8
 890,Eternatus,Poison,Dragon,140,85,95,145,95,130,690,8
-890,Eternatus (Eternamax),Poison,Dragon,255,115,250,125,250,130,1125,8
+890,Eternatus-Eternamax,Poison,Dragon,255,115,250,125,250,130,1125,8
 891,Kubfu,Fighting,nan,60,90,60,53,50,72,385,8
-892,Urshifu-SingleStrike,Fighting,Dark,100,130,100,63,60,97,550,8
-892,Urshifu-Rapid-Strike,Fighting,Water,100,130,100,63,60,97,550,8
+892,Urshifu-Single_Strike,Fighting,Dark,100,130,100,63,60,97,550,8
+892,Urshifu-Rapid_Strike,Fighting,Water,100,130,100,63,60,97,550,8
 893,Zarude,Dark,Grass,105,120,105,70,95,105,600,8
