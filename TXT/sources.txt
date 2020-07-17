@@ -5,8 +5,10 @@ pokemon_list.csv (edited to include relevant information, based on the following
 pokemon_lore.csv
 	Source: my own csv from information at Serebii.net and Bulbapedia
 
-pokemon_moves.csv (unchanged)
-	Source: https://github.com/christophercao1/Pokemon-Simulator-in-Python/blob/master/Pokemon%20Moves.csv
+pokemon_moves.csv
+	Original Source (up to Gen III): https://github.com/christophercao1/Pokemon-Simulator-in-Python/blob/master/Pokemon%20Moves.csv
+	"Effects" column taken from this and implemented into new file:
+	New File Source (up to Gen VII: https://www.kaggle.com/n2cholas/competitive-pokemon-dataset/data
 
 pokemon_natures.csv
 	Source: my own csv from information at https://www.serebii.net/games/natures.shtml
