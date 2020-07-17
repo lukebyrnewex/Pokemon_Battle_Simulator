@@ -15,6 +15,7 @@ data_folder = Path("D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulato
 file_pokemon_list = data_folder / "pokemon_list.csv"
 file_pokemon_lore = data_folder / "pokemon_lore.csv"
 file_pokemon_natures = data_folder / "pokemon_natures.csv"
+file_effectiveness = data_folder / "pokemon_type_effectiveness.csv"
 
 
 # The actual Pokémon and their stats
@@ -29,6 +30,7 @@ class Pokemon:
 
         # Typing
         self.types = types
+        self.type_effect = self.calculate_effectiveness()
 
         # Base stats
         self.base_stats = base_stats
@@ -73,6 +75,24 @@ class Pokemon:
             else:
                 determined_stats.append(math.floor((common_formula + 5) * 1.0))
         return determined_stats
+
+    # Return dictionary of effectiveness of moves against this Pokémon
+    def calculate_effectiveness(self):
+        type_dict = {}
+        type_idx = []
+        with open(file_effectiveness) as effect_chart:
+            effect_reader = csv.reader(effect_chart, delimiter=",")
+            pkmn_type_row = next(effect_reader)
+            for idx, column in enumerate(pkmn_type_row):
+                if column in self.types:
+                    type_idx.append(idx)
+            for row in effect_reader:
+                if len(type_idx) > 1:
+                    type_dict[row[0]] = float(float(row[type_idx[0]]) * float(row[type_idx[1]]))
+                else:
+                    type_dict[row[0]] = float(row[type_idx[0]])
+            return type_dict
+
 
     def print_pokemon(self):
         pokedex_no = int(self.pokedex)
