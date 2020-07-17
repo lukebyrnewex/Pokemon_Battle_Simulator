@@ -52,10 +52,15 @@ class Pokemon:
         self.spdef = determined_stats[4]
         self.speed = determined_stats[5]
 
-        # TODO: Future additions to the Pokémon (for Battle) - create objects for these
-        self.ability = "token ability"
-        self.item = "token item"
-        self.gender = "token gender"
+        # TODO: Future additions to the Pokémon (for Battle) - create objects/CSVs for these
+        #self.item = "token item"
+        #self.ability = "token ability"
+
+        # Battle statuses and related variables
+        #self.gender = "token gender"  # M/F/Genderless
+        #self.non_vol_status = "nan/BRN/FRZ/PAR/PSN/BPSN/SLP"
+        #self.vol_status = "bound/curse/infatuation...etc."
+        #self.vol_btl_status = "aqua ring/move charge/follow me"
 
     def determine_stats(self):
         determined_stats = []
