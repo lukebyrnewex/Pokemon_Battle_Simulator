@@ -218,7 +218,7 @@ def pick_stats():
     """Calls functions to select and describe a Pokémon's nature, IVs & EVs."""
     print_all_natures()
     print(utilities.csv_extractor(
-        file_pokemon_lore,"title", "nature_values", "description"))
+        file_pokemon_lore, "title", "nature_values", "description"))
     selected_nature = pick_nature_parser()
 
     # IVs and EVs
@@ -357,7 +357,7 @@ def pokemon_value_parser(value_type, value_list):
         bool: True if within bounds, False if not.
     """
     # Find appropriate max value amounts
-    running_total = 0
+    value_max, value_total_max, running_total = 0, 0, 0
     value_type = value_type.upper()
     if check_if_ev_or_iv(value_type):
         if value_type == "IV":
