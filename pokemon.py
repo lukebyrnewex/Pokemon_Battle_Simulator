@@ -4,7 +4,7 @@ import moves
 import utilities
 from pathlib import Path
 
-# Module Data
+# Module Constant Data
 TEST_LEVEL = 100
 STAT_AMOUNT = 6
 IV_MAX = 31
