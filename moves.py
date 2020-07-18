@@ -14,18 +14,31 @@ with open(file_moves_csv) as pokemon_moves:
 
 
 class Move:
-    def __init__(self, name, effect, move_type, kind, power, accuracy, pp):
+    def __init__(self, name, effect, move_type, category, power, accuracy, pp):
+        """Constructor for a Pokémon move.
+
+        Args:
+            name (str): The name of the move.
+            effect (str): The description of the move and its effects.
+            move_type (str): The move type, such as Water or Grass.
+            category (str): The move category [Physical, Special or Status].
+            power (int): The move's base power, used in damage calculation.
+            accuracy (int): A percentage of how often a move will hit.
+            pp (int): Power points, or how many times the move can be used.
+
+        """
         self.name = name
         self.effect = effect
         self.move_type = move_type
-        self.kind = kind
+        self.category = category
         self.power = power
         self.accuracy = accuracy
         self.pp = pp
 
     def print_move(self):
+        """Pretty prints the Move constructor's information."""
         print(f'{self.name} (BP: {self.power}, Accuracy: {self.accuracy})'
-              f'\nType: {self.move_type}\tKind: {self.kind}'
+              f'\nType: {self.move_type}\tKind: {self.category}'
               f'\nDescription: {self.effect}')
 
 
@@ -45,21 +58,29 @@ def pick_moves():
         for row in movelist:
             for move_no in inputted_move_numbers:
                 if int(row[0]) == move_no:
-                    moves.append(Move(row[1], row[2], row[3],
-                                      row[4], row[5], row[6],
-                                      row[7]))
+                    moves.append(Move(row[1], row[2], row[3], row[4],
+                                      int(row[5]), int(row[6]), int(row[7])))
     return moves
 
 
 def print_movelist():
+    """Prints the number and name of every Pokémon move."""
     with open(file_moves_csv) as movelist_csv:
         movelist = csv.reader(movelist_csv, delimiter=',')
         for row in movelist:
             print(f'#{row[0]}\t{row[1]}')
 
 
-# Returns an accurate number for processing Pokémon Moves
 def move_input_parser(move_amount):
+    """Function ensures the inputted move number is within the given bounds.
+
+    Args:
+        move_amount (int): The total amount of Pokémon moves.
+
+    Returns:
+        move_number (int): The selected move's number.
+
+    """
     while True:
         try:
             move_input = input("Choose a move number from the list:")
