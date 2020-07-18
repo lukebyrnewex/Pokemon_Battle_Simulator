@@ -1,30 +1,52 @@
 import csv
 
 
-def str_list_to_int(str_to_int_list):
+def str_list_to_int(str_list):
+    """Function with transforms string lists to int lists
+
+    Args:
+        str_list (list[str]): A list of strings.
+
+    Returns:
+        int_list (list[int]): A list of integers.
+
+    Raises:
+        ValueError: if one of the list variables
+            is not a numeric value
+
+    """
     try:
-        str_to_int_list = [int(value) for value in str_to_int_list]
-        return str_to_int_list
+        int_list = [int(value) for value in str_list]
+        return int_list
     except ValueError:
-        print("One of the list items is not an integer.")
+        print("One of the list items is not a numeric value.")
 
 
-def check_value_type(value):
-    value = value.upper()
-    pokemon_value_types = ["IV", "EV"]
-    if value in pokemon_value_types:
-        return True
-    return False
+def csv_extractor(csv_filename, key, value, output):
+    """Function which finds the an item in a key column, and returns the
+    corresponding row item in the output column.
+    For example: test.csv
+        columnA     columnB     columnC
+        1           2           3
+        4           5           6
+    csv_extractor("test.csv", "columnA", 4, "columnC") returns 6
 
+    Args:
+        csv_filename (csv): The csv file to search through.
+        key: The column heading name for the column we wish to search through.
+        value: The value in the key column which identifies the desired row.
+        output: The column heading name in which the returned value lies.
 
-# Extract a row from the CSV file by selecting a key and desired output heading
-# from the first line of the file, then search for a specified value in that key's column
-# and return that row and its contents
-def csv_extractor(csv_file, key, output, value):
+    Returns:
+        row[output_index]: The desired value from the output column.
+
+    """
     key = key.lower().strip()
     value = value.lower().strip()
+    output = output.lower().strip()
 
-    with open(csv_file) as csv_file:
+    # The parameters allow for inputs with commas within strings
+    with open(csv_filename) as csv_file:
         csv_reader = csv.reader(
             csv_file, quotechar='"', delimiter=',',
             quoting=csv.QUOTE_ALL, skipinitialspace=True)
@@ -38,13 +60,26 @@ def csv_extractor(csv_file, key, output, value):
         for row in csv_reader:
             row_value = row[key_index].lower().strip()
             if row_value == value:
-                return row[output_index]
+                output_value = row[output_index]
+                if output_value.isdigit():
+                    output_value = int(output_value)
+                return output_value
     print(f'The value "{value}" cannot be found under the key "{key}".')
     return None
 
 
-# Refactoring of inner loop to find the key for csv_extractor
 def find_key_index(row, key):
+    """Refactoring of inner loop within csv_extractor(), which finds
+    the index of the inputted key within the row.
+
+    Args:
+        row: The row within the CSV file.
+        key: The key value for which we are searching.
+
+    Returns:
+        idx (int): The index within the row which contains the key value.
+
+    """
     for idx, column in enumerate(row):
         column = column.lower().strip()
         if column == key:

@@ -53,14 +53,14 @@ class Pokemon:
         self.speed = determined_stats[5]
 
         # TODO: Future additions to the Pokémon (for Battle) - create objects/CSVs for these
-        #self.item = "token item"
-        #self.ability = "token ability"
+        # self.item = "token item"
+        # self.ability = "token ability"
 
         # Battle statuses and related variables
-        #self.gender = "token gender"  # M/F/Genderless
-        #self.non_vol_status = "nan/BRN/FRZ/PAR/PSN/BPSN/SLP"
-        #self.vol_status = "bound/curse/infatuation...etc."
-        #self.vol_btl_status = "aqua ring/move charge/follow me"
+        # self.gender = "token gender"  # M/F/Genderless
+        # self.non_vol_status = "nan/BRN/FRZ/PAR/PSN/BPSN/SLP"
+        # self.vol_status = "bound/curse/infatuation...etc."
+        # self.vol_btl_status = "aqua ring/move charge/follow me"
 
     def determine_stats(self):
         determined_stats = []
@@ -97,7 +97,6 @@ class Pokemon:
                 else:
                     type_dict[row[0]] = float(row[type_idx[0]])
             return type_dict
-
 
     def print_pokemon(self):
         pokedex_no = int(self.pokedex)
@@ -159,13 +158,13 @@ def pick_stats():
     print_all_natures()
     print(
         f'Firstly, we much select a nature.'
-        f'\n{utilities.csv_extractor(file_pokemon_lore, "title", "description", "nature_values")}')
+        f'\n{utilities.csv_extractor(file_pokemon_lore,"title", "nature_values", "description")}')
     selected_nature = pick_nature_parser()
 
     # IVs and EVs
-    print(utilities.csv_extractor(file_pokemon_lore, "title", "description", "individual_values"))
+    print(utilities.csv_extractor(file_pokemon_lore, "title", "individual_values", "description"))
 
-    print(utilities.csv_extractor(file_pokemon_lore, "title", "description", "effort_values"))
+    print(utilities.csv_extractor(file_pokemon_lore, "title", "effort_values", "description"))
     selected_ivs, selected_evs = pokemon_value_input("iv"), pokemon_value_input("ev")
 
     return selected_nature, selected_ivs, selected_evs
@@ -280,3 +279,19 @@ def pokemon_value_parser(value_type, value_list):
             print(f'One of your {value_type}s is outside the appropriate range of 0-{value_max}. Try again.')
             return False
     return True
+
+
+def check_value_type(value):
+    """Simple function to verify whether the values are EVs or IVs.
+
+        Args:
+            value (str): str to verify.
+
+        Returns:
+            bool: whether it says EV or IV (True) or not (False).
+        """
+    value = value.upper()
+    pokemon_value_types = ["IV", "EV"]
+    if value in pokemon_value_types:
+        return True
+    return False
