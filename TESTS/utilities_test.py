@@ -11,10 +11,14 @@ file_pokemon_csv = data_folder / "pokemon_list.csv"
 class TestUtilities(unittest.TestCase):
     def test_str_list_to_int(self):
         # TODO: docstring
-        self.assertEqual(str_list_to_int(["1", "5", "20", "50"]), [1, 5, 20, 50])
-        self.assertEqual(str_list_to_int(["-1", "-5", "-20", "-50"]), [-1, -5, -20, -50])
-        self.assertEqual(str_list_to_int(["1"]), [1])
-        self.assertEqual(str_list_to_int("1"), [1])
+        self.assertEqual(str_list_to_int(
+            ["1", "5", "20", "50"]), [1, 5, 20, 50])
+        self.assertEqual(str_list_to_int(
+            ["-1", "-5", "-20", "-50"]), [-1, -5, -20, -50])
+        self.assertEqual(str_list_to_int(
+            ["1"]), [1])
+        self.assertEqual(str_list_to_int(
+            "1"), [1])
 
     def test_csv_extractor(self):
         # TODO: docstring

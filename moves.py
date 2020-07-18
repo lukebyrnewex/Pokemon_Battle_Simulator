@@ -3,7 +3,8 @@ from pathlib import Path
 
 MOVES_PER_POKEMON = 4
 
-data_folder = Path("D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
+data_folder = Path(
+    "D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
 file_moves_csv = data_folder / "pokemon_moves.csv"
 
 

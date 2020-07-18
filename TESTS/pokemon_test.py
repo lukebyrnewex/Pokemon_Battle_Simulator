@@ -4,7 +4,7 @@ import pokemon
 
 class TestPokemon(unittest.TestCase):
     def test_determine_stats(self):
-        # Example Pokémon (from https://bulbapedia.bulbagarden.net/wiki/Statistic)
+        # Example Pokémon (from bulbapedia.bulbagarden.net/wiki/Statistic)
         garchomp = pokemon.Pokemon(
             445, "Garchomp", 78, ["Ice"],
             [108, 130, 95, 80, 85, 102, 600],

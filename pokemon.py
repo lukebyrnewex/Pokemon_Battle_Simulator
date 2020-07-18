@@ -11,7 +11,8 @@ IV_MAX_TOTAL = IV_MAX * 6
 EV_MAX = 255
 EV_MAX_TOTAL = EV_MAX * 2
 
-data_folder = Path("D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
+data_folder = Path(
+    "D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
 file_pokemon_list = data_folder / "pokemon_list.csv"
 file_pokemon_lore = data_folder / "pokemon_lore.csv"
 file_pokemon_natures = data_folder / "pokemon_natures.csv"
@@ -52,9 +53,9 @@ class Pokemon:
         self.spdef = determined_stats[4]
         self.speed = determined_stats[5]
 
-        # TODO: Future additions to the Pokémon (for Battle) - create objects/CSVs for these
-        # self.item = "token item"
-        # self.ability = "token ability"
+        # TODO: Future battle additions -- create objects/CSVs for these
+        self.item = "token item"
+        self.ability = "token ability"
 
         # Battle statuses and related variables
         # self.gender = "token gender"  # M/F/Genderless
@@ -93,9 +94,11 @@ class Pokemon:
                     type_idx.append(idx)
             for row in effect_reader:
                 if len(type_idx) > 1:
-                    type_dict[row[0]] = float(float(row[type_idx[0]]) * float(row[type_idx[1]]))
+                    type_dict[row[0]] = float(
+                        float(row[type_idx[0]]) * float(row[type_idx[1]]))
                 else:
-                    type_dict[row[0]] = float(row[type_idx[0]])
+                    type_dict[row[0]] = float(
+                        row[type_idx[0]])
             return type_dict
 
     def print_pokemon(self):
@@ -110,7 +113,8 @@ class Pokemon:
         if len(self.types[1]) < 1:
             print(f'{self.types[0]} Pokémon with {self.ability} Ability')
         else:
-            print(f'{self.types[0]}/{self.types[1]} Pokémon with {self.ability} Ability')
+            print(f'{self.types[0]}/{self.types[1]} '
+                  f'Pokémon with {self.ability} Ability')
         print(f'Level: {self.level}')
         print(
             f'EVs: {self.evs[0]} HP / {self.evs[1]} Atk / '
@@ -156,17 +160,17 @@ def pick_pokemon():
 def pick_stats():
     # Nature
     print_all_natures()
-    print(
-        f'Firstly, we much select a nature.'
-        f'\n{utilities.csv_extractor(file_pokemon_lore,"title", "nature_values", "description")}')
+    print(utilities.csv_extractor(
+        file_pokemon_lore,"title", "nature_values", "description"))
     selected_nature = pick_nature_parser()
 
     # IVs and EVs
-    print(utilities.csv_extractor(file_pokemon_lore, "title", "individual_values", "description"))
-
-    print(utilities.csv_extractor(file_pokemon_lore, "title", "effort_values", "description"))
-    selected_ivs, selected_evs = pokemon_value_input("iv"), pokemon_value_input("ev")
-
+    print(utilities.csv_extractor(
+        file_pokemon_lore, "title", "individual_values", "description"))
+    print(utilities.csv_extractor(
+        file_pokemon_lore, "title", "effort_values", "description"))
+    selected_ivs, selected_evs = (
+        pokemon_value_input("iv"), pokemon_value_input("ev"))
     return selected_nature, selected_ivs, selected_evs
 
 
@@ -230,7 +234,7 @@ def pokemon_value_input(value_type):
     print(f"All {value_type} values should be inputted in the order and format:"
           "\nHP/Attack/Defense/Special Attack/Special Defense/Speed.")
 
-    if utilities.check_value_type(value_type):
+    if check_value_type(value_type):
         while True:
             # Input EVs
             inputted_values = input("Please select your 6 values:")
@@ -256,7 +260,7 @@ def pokemon_value_parser(value_type, value_list):
     # Find appropriate max value amounts
     running_total = 0
     value_type = value_type.upper()
-    if utilities.check_value_type(value_type):
+    if check_value_type(value_type):
         if value_type == "IV":
             value_max = IV_MAX
             value_total_max = IV_MAX_TOTAL
