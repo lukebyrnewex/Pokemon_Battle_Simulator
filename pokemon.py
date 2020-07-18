@@ -4,6 +4,7 @@ import moves
 import utilities
 from pathlib import Path
 
+# Module Data
 TEST_LEVEL = 100
 STAT_AMOUNT = 6
 IV_MAX = 31
@@ -11,6 +12,7 @@ IV_MAX_TOTAL = IV_MAX * 6
 EV_MAX = 255
 EV_MAX_TOTAL = EV_MAX * 2
 
+# File Processing
 data_folder = Path(
     "D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
 file_pokemon_list = data_folder / "pokemon_list.csv"
@@ -19,11 +21,50 @@ file_pokemon_natures = data_folder / "pokemon_natures.csv"
 file_effectiveness = data_folder / "pokemon_type_effectiveness.csv"
 
 
-# The actual Pokémon and their stats
 class Pokemon:
+    # TODO: class-level docstring
     def __init__(
             self, pokedex, name, level, types,
             base_stats, pokemon_moves, nature, ivs, evs):
+        """Constructor for the Pokémon class. Included within is every
+        characteristic that a Pokémon possesses.
+
+        Args:
+            pokedex (int): The Pokémon's Pokédex number.
+            name (str): The Pokémon's name.
+            level (int): The Pokémon's level.
+            types (list[str]): The Pokémon's type (or types), max. 2 types.
+            base_stats (list[int]): The Pokémon's standard, basic statistics.
+            pokemon_moves (list[moves.Move]): The Pokémon's moves.
+            nature (str): The Pokémon's nature (boosts/weakens specific stats).
+            ivs (list[int]): The Pokémon's "Individual Values" (genetic stats).
+            evs (list[int]): The Pokémon's "Effort Values" (trained stats).
+
+        Attributes:
+            pokedex (int): The Pokémon's Pokédex number.
+            name (str): The Pokémon's name.
+            level (int): The Pokémon's level.
+            types (list[str]): The Pokémon's type (or types), max. 2 types.
+            type_effect (list[float]): Type effectiveness against this Pokémon.
+            base_stats (list[int]): The Pokémon's standard, basic statistics.
+            pokemon_moves (list[moves.Move]): The Pokémon's moves.
+            nature (str): The Pokémon's nature (boosts/weakens specific stats).
+            ivs (list[int]): The Pokémon's "Individual Values" (genetic stats).
+            evs (list[int]): The Pokémon's "Effort Values" (trained stats).
+            hp (int): Pokémon's Health Points including IVs and EVs.
+            attack (int): Pokémon's Attack Points incl. nature/IVs/EVs.
+            defense (int): Pokémon's Defense Points incl. nature/IVs/EVs.
+            spatk (int): Pokémon's Special Attack Points incl. nature/IVs/EVs.
+            spdef (int): Pokémon's Special Defense Points incl. nature/IVs/EVs.
+            speed (int): Pokémon's Speed Points incl. nature/IVs/EVs.
+            # item (?): The Pokémon's held item, which may effect stats etc.
+            # abiliity (?): The Pokémon's ability, which may effect stats etc.
+            # gender (?): The Pokémon's gender, either Male/Female/Genderless.
+            # non_vol_status (?): Status such as Burn and Freeze.
+            # vol_status (?): Status such as Infatuation and Confusion.
+            # vol_btl_status (?): Battle status such as Follow Me.
+
+        """
         # Basic Information
         self.pokedex = pokedex
         self.name = name
@@ -58,12 +99,16 @@ class Pokemon:
         self.ability = "token ability"
 
         # Battle statuses and related variables
-        # self.gender = "token gender"  # M/F/Genderless
-        # self.non_vol_status = "nan/BRN/FRZ/PAR/PSN/BPSN/SLP"
-        # self.vol_status = "bound/curse/infatuation...etc."
-        # self.vol_btl_status = "aqua ring/move charge/follow me"
+        self.gender = "token gender"  # M/F/Genderless
+        self.non_vol_status = "nan/BRN/FRZ/PAR/PSN/BPSN/SLP"
+        self.vol_status = "bound/curse/infatuation...etc."
+        self.vol_btl_status = "aqua ring/move charge/follow me"
 
     def determine_stats(self):
+        """
+        Using Base Stats, Nature, EVs & IVs, use formulae to find the
+        final calculated stats for this Pokémon.
+        """
         determined_stats = []
         pro, con = define_nature(self.nature)
 
@@ -82,8 +127,11 @@ class Pokemon:
                 determined_stats.append(math.floor((common_formula + 5) * 1.0))
         return determined_stats
 
-    # Return dictionary of effectiveness of moves against this Pokémon
     def calculate_effectiveness(self):
+        """
+        Return dictionary of effectiveness of each move type
+        against this Pokémon.
+        """
         type_dict = {}
         type_idx = []
         with open(file_effectiveness) as effect_chart:
@@ -102,6 +150,7 @@ class Pokemon:
             return type_dict
 
     def print_pokemon(self):
+        """Pretty print Pokémon's information and statistics."""
         pokedex_no = int(self.pokedex)
         if pokedex_no < 10:
             pokedex_str = f'#00{self.pokedex}'
@@ -130,12 +179,20 @@ class Pokemon:
                 f'Power: {move.power} @ {move.accuracy})')
 
     def show_moves(self):
+        """Print this Pokémon's moves."""
+        # TODO: include power etc.
         print(
             f'{self.moves[0].name}\t{self.moves[1].name}'
-            f'\n{self.moves[2]}\t{self.moves[3]}\t')
+            f'\n{self.moves[2].name}\t{self.moves[3].name}\t')
 
 
 def pick_pokemon():
+    """
+    User inputs a Pokémon name, and selects its moves, nature, IVs and EVs.
+
+    Returns:
+         Pokemon (pokemon.Pokemon): Selected Pokémon with inputted statistics.
+    """
     with open(file_pokemon_list) as pokemon_csv:
         csv_reader = csv.reader(pokemon_csv, delimiter=',')
         pokemon_choice = input("Type a Pokémon's name:")
@@ -158,7 +215,7 @@ def pick_pokemon():
 
 
 def pick_stats():
-    # Nature
+    """Calls functions to select and describe a Pokémon's nature, IVs & EVs."""
     print_all_natures()
     print(utilities.csv_extractor(
         file_pokemon_lore,"title", "nature_values", "description"))
@@ -175,6 +232,7 @@ def pick_stats():
 
 
 def print_nature(nature):
+    """Pretty prints the nature's boosted and weakened statistics."""
     with open(file_pokemon_natures) as natures_csv:
         natures_reader = csv.reader(natures_csv, delimiter=',')
         for row in natures_reader:
@@ -185,6 +243,7 @@ def print_nature(nature):
 
 
 def print_all_natures():
+    """Prints all the natures, including their boosted and weakened stats."""
     with open(file_pokemon_natures) as natures_csv:
         csv_reader = csv.reader(natures_csv, delimiter=',')
         for row in csv_reader:
@@ -192,7 +251,13 @@ def print_all_natures():
 
 
 def pick_nature_parser():
-    # Documenting accepted natures
+    """
+    Parser to whether an inputted nature is found within the list.
+
+    Returns:
+        nature_input (str): Returns a nature, which has been deemed acceptable.
+
+    """
     accepted_natures = []
     with open(file_pokemon_natures) as natures_csv:
         natures_reader = csv.reader(natures_csv, delimiter=',')
@@ -212,6 +277,21 @@ def pick_nature_parser():
 
 
 def define_nature(nature):
+    """
+    Gives to each Pokémon statistic an integer corresponding to the common
+    ordering of Pokémon statistics (HP/PhysAtk&Def/SpecialAtk&Def/Speed).
+    This function in particular returns the integer value, according to a
+    dictionary, of the boosted stat and the weakened stat according to the
+    nature.
+
+    Args:
+        nature (str): The nature to be defined numerically by the function.
+
+    Returns:
+        pro (int): The integer value, in the dictionary, of the boosted stat.
+        con (int): The integer value, in the dictionary, of the weakened stat.
+
+    """
     nature_dict = {
         "Attack": 1,
         "Defense": 2,
@@ -230,13 +310,23 @@ def define_nature(nature):
 
 
 def pokemon_value_input(value_type):
+    """
+    Method for inputting the desired IVs and EVs, including error checking
+    for format and amount and conversion to integer list.
+
+    Args:
+        value_type (str): Input of either "IV" or "EV", depending on value.
+
+    Returns:
+        delimited_values (list[int]): Integer list of desired values.
+    """
     value_type = value_type.upper()
-    print(f"All {value_type} values should be inputted in the order and format:"
+    print(f"All {value_type} values should be inputted in this format:"
           "\nHP/Attack/Defense/Special Attack/Special Defense/Speed.")
 
-    if check_value_type(value_type):
+    if check_if_ev_or_iv(value_type):
         while True:
-            # Input EVs
+            # Input values
             inputted_values = input("Please select your 6 values:")
             delimited_values = inputted_values.split("/")
             print(len(delimited_values))
@@ -249,18 +339,27 @@ def pokemon_value_input(value_type):
                 if pokemon_value_parser(value_type, delimited_values):
                     return delimited_values
             else:
-                print("You have inputted an incorrect amount of IVs. Try again.")
+                print("You have inputted an incorrect amount of IVs.")
     else:
         print("Please input either 'IV' or 'EV' into function.")
         return None
 
 
-# Returns True if all values are within their appropriate boundaries, False if not (with explanation)
 def pokemon_value_parser(value_type, value_list):
+    """Parser for Pokémon IVs and EVs, which verifies they are within the
+    correct bounds, and informs the user of their mistake otherwise.
+
+    Args:
+        value_type (str): Whether it's an IV or EV being parsed.
+        value_list (list[int]): The list of IVs or EVs.
+
+    Returns:
+        bool: True if within bounds, False if not.
+    """
     # Find appropriate max value amounts
     running_total = 0
     value_type = value_type.upper()
-    if check_value_type(value_type):
+    if check_if_ev_or_iv(value_type):
         if value_type == "IV":
             value_max = IV_MAX
             value_total_max = IV_MAX_TOTAL
@@ -268,7 +367,7 @@ def pokemon_value_parser(value_type, value_list):
             value_max = EV_MAX
             value_total_max = EV_MAX_TOTAL
     else:
-        print("You haven't entered an appropriate value type (IV or EV). Try again.")
+        print("You haven't entered an appropriate value type (IV or EV).")
         return False
 
     # Check they're within appropriate boundaries
@@ -280,12 +379,13 @@ def pokemon_value_parser(value_type, value_list):
                 return False
             pass
         else:
-            print(f'One of your {value_type}s is outside the appropriate range of 0-{value_max}. Try again.')
+            print(f'One of your {value_type}s is outside '
+                  f'the appropriate range of 0-{value_max}. Try again.')
             return False
     return True
 
 
-def check_value_type(value):
+def check_if_ev_or_iv(value):
     """Simple function to verify whether the values are EVs or IVs.
 
         Args:
