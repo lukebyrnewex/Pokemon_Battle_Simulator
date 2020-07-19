@@ -58,6 +58,10 @@ class TestPokemon(unittest.TestCase):
         self.assertDictEqual(litleo.type_effect, litleo_effectiveness)
         self.assertDictEqual(misdreavus.type_effect, misdreavus_effectiveness)
 
+        # TODO: tests for pick_pokemon(), pick_stats(), pick_nature_parser(),
+        # TODO: define_nature(), pokemon_value_input(), pokemon_value_parser(),
+        # TODO: and check_if_iv_or_ev()
+
 
 if __name__ == '__main__':
     unittest.main()

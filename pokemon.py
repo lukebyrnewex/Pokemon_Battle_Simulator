@@ -324,7 +324,7 @@ def pokemon_value_input(value_type):
     print(f"All {value_type} values should be inputted in this format:"
           "\nHP/Attack/Defense/Special Attack/Special Defense/Speed.")
 
-    if check_if_ev_or_iv(value_type):
+    if check_if_iv_or_ev(value_type):
         while True:
             # Input values
             inputted_values = input("Please select your 6 values:")
@@ -359,7 +359,7 @@ def pokemon_value_parser(value_type, value_list):
     # Find appropriate max value amounts
     value_max, value_total_max, running_total = 0, 0, 0
     value_type = value_type.upper()
-    if check_if_ev_or_iv(value_type):
+    if check_if_iv_or_ev(value_type):
         if value_type == "IV":
             value_max = IV_MAX
             value_total_max = IV_MAX_TOTAL
@@ -385,7 +385,7 @@ def pokemon_value_parser(value_type, value_list):
     return True
 
 
-def check_if_ev_or_iv(value):
+def check_if_iv_or_ev(value):
     """Simple function to verify whether the values are EVs or IVs.
 
         Args:
