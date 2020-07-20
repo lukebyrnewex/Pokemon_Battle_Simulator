@@ -28,18 +28,15 @@ class TestMoves(TestCase):
 			"Supersonic", "Confuses the target.", "Normal", "Status", 0, 55, 20
 		)
 		test_moves = [pound, leer, sing, supersonic]
-		self.assertIs(pick_moves(), test_moves)
+		picked_moves = pick_moves()
+		for i in range(MOVES_PER_POKEMON-1):
+			# Verify each attribute of the moves are the same
+			self.assertTrue(test_moves[i].__dict__, picked_moves[i].__dict__)
 
 	# TODO: test that the same move isn't inputted twice
 	# def test_move_repetition(self):
 		# test_something()
 
-# TODO: complete
-def object_contents_equality(obj1, obj2):
-	"""Verify whether two objects have the exact same contents."""
-	for arg1, arg2 in obj1, obj2:
-		if arg1 != arg2:
-			return False
 
 if __name__ == '__main__':
 	unittest.main()
