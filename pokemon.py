@@ -25,7 +25,7 @@ class Pokemon:
     # TODO: class-level docstring
     def __init__(
             self, pokedex, name, level, types,
-            base_stats, pokemon_moves, nature, ivs, evs):
+            base_stats, pokemon_moves, nature, ivs, evs, gender):
         """Constructor for the Pokémon class. Included within is every
         characteristic that a Pokémon possesses.
 
@@ -99,7 +99,7 @@ class Pokemon:
         self.ability = "token ability"
 
         # Battle statuses and related variables
-        self.gender = "token gender"  # M/F/Genderless
+        self.gender = gender
         self.non_vol_status = "nan/BRN/FRZ/PAR/PSN/BPSN/SLP"
         self.vol_status = "bound/curse/infatuation...etc."
         self.vol_btl_status = "aqua ring/move charge/follow me"
@@ -195,7 +195,7 @@ def pick_pokemon():
     """
     with open(file_pokemon_list) as pokemon_csv:
         csv_reader = csv.reader(pokemon_csv, delimiter=',')
-        pokemon_choice = input("Type a Pokémon's name:")
+        pokemon_choice = input("Type a Pokémon's name:")  # TODO: str-check
         for row in csv_reader:
             if pokemon_choice == row[1]:
                 typing = [row[2], row[3]]
@@ -206,10 +206,11 @@ def pick_pokemon():
                 base_stats = utilities.str_list_to_int(base_stats)
                 selected_moves = moves.pick_moves()
                 nature, ivs, evs = pick_stats()
+                gender = define_gender(int(row[0]), row[1])
                 return Pokemon(
                     int(row[0]), row[1], TEST_LEVEL,
                     typing, base_stats, selected_moves,
-                    nature, ivs, evs)
+                    nature, ivs, evs, gender)
         print(f'{pokemon_choice} could not be found. Try again.')
         pick_pokemon()
 
@@ -307,6 +308,42 @@ def define_nature(nature):
                 pro = nature_dict[row[1].strip()]
                 con = nature_dict[row[2].strip()]
         return pro, con
+
+
+def define_gender(pokedex_number, pokemon_name):
+    """Function which checks whether the Pokémon has a specified gender:
+    if not, the user will select one.
+
+    Args:
+        pokedex_number (int): The Pokémon's number.
+        pokemon_name (str): The Pokémon's name, as some Pokémon, such as
+            Indeedee, have two separate gendered forms under the same Pokédex.
+
+    Returns:
+        gender_choice (str): The selected gender, whether pre-defined or
+            user-inputted.
+    """
+    gender_options = ["Male", "Female", "Genderless"]
+    with open(file_pokemon_list) as gender_list:
+        gender_reader = csv.reader(gender_list, delimiter=",")
+        next(gender_reader)  # Skip header line
+        for row in gender_reader:
+            if int(row[0]) == pokedex_number and row[1] == pokemon_name:
+                if row[12] == "Undefined":
+                    # If Pokémon's gender is not pre-set, then select one
+                    while True:
+                        gender_choice = input(
+                            "Please input 'Male', 'Female' or 'Genderless'"
+                        )
+                        if gender_choice not in gender_options:
+                            print(
+                                "That gender is not yet in the Pokémon world, "
+                                "please try again."
+                            )
+                        else:
+                            return gender_choice
+                else:
+                    return row[12]
 
 
 def pokemon_value_input(value_type):

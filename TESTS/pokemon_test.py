@@ -1,4 +1,5 @@
 import unittest
+from unittest import mock
 import pokemon
 
 
@@ -11,7 +12,8 @@ class TestPokemon(unittest.TestCase):
             ["Pound", "Fire Punch", "Ice Punch", "ThunderPunch"],
             "Adamant",
             [24, 12, 30, 16, 23, 5],
-            [74, 190, 91, 48, 84, 23]
+            [74, 190, 91, 48, 84, 23],
+            "Male"
         )
         self.assertEqual(garchomp.hp, 289)
         self.assertEqual(garchomp.attack, 278)
@@ -28,7 +30,8 @@ class TestPokemon(unittest.TestCase):
             ["Pound", "Fire Punch", "Ice Punch", "ThunderPunch"],
             "Adamant",
             [31, 31, 31, 31, 31, 31],
-            [252, 0, 0, 252, 0, 4]
+            [252, 0, 0, 252, 0, 4],
+            "Male"
         )
         misdreavus = pokemon.Pokemon(
             200, "Misdreavus", 100, ["Ghost"],
@@ -36,7 +39,8 @@ class TestPokemon(unittest.TestCase):
             ["Pound", "Fire Punch", "Ice Punch", "ThunderPunch"],
             "Adamant",
             [31, 31, 31, 31, 31, 31],
-            [252, 0, 0, 252, 0, 4]
+            [252, 0, 0, 252, 0, 4],
+            "Female"
         )
 
         # Example Pokémon correct type effectiveness dictionaries
@@ -58,9 +62,25 @@ class TestPokemon(unittest.TestCase):
         self.assertDictEqual(litleo.type_effect, litleo_effectiveness)
         self.assertDictEqual(misdreavus.type_effect, misdreavus_effectiveness)
 
-        # TODO: tests for pick_pokemon(), pick_stats(), pick_nature_parser(),
-        # TODO: define_nature(), pokemon_value_input(), pokemon_value_parser(),
-        # TODO: and check_if_iv_or_ev()
+    def test_gender_normal_circumstances(self):
+        """Verify that predefined gender is correctly outputted."""
+        self.assertEqual(pokemon.define_gender(628, "Braviary"), "Male")
+        self.assertEqual(pokemon.define_gender(854, "Sinistea"), "Genderless")
+        self.assertEqual(pokemon.define_gender(858, "Hatterene"), "Female")
+
+    def test_gender_same_pokedex(self):
+        """Pokémon with same Pokédex, but different gendered forms."""
+        self.assertEqual(pokemon.define_gender(876, "Indeedee-M"), "Male")
+        self.assertEqual(pokemon.define_gender(876, "Indeedee-F"), "Female")
+
+    @mock.patch('pokemon.input', side_effect=["hello", "this", 12, "Female"])
+    def test_gender_user_input(self, mock_input):
+        self.assertEqual(pokemon.define_gender(200, "Misdreavus"), "Female")
+
+
+# TODO: tests for pick_pokemon(), pick_stats(), pick_nature_parser(),
+# TODO: define_nature(), pokemon_value_input(), pokemon_value_parser(),
+# TODO: and check_if_iv_or_ev()
 
 
 if __name__ == '__main__':
