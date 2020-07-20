@@ -50,10 +50,14 @@ def pick_moves():
         movelist = csv.reader(pokemon_moves_list, delimiter=',')
         print_movelist()
 
-        # User input selecting 4 moves from the total amount of moves
+        # User input selecting 4 diff. moves from the total amount of moves
         inputted_move_numbers = []
-        for x in range(MOVES_PER_POKEMON):
-            inputted_move_numbers.append(move_input_parser(MOVE_TOTAL))
+        while len(inputted_move_numbers) < MOVES_PER_POKEMON:
+            parsed_move_no = move_input_parser(MOVE_TOTAL)
+            if parsed_move_no not in inputted_move_numbers:
+                inputted_move_numbers.append(parsed_move_no)
+            else:
+                print("You already have that move! Pick another.")
 
         # Creation of move objects
         next(movelist)  # Skip first line
