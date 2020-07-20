@@ -1,4 +1,5 @@
 import unittest
+from typing import List
 from unittest import mock, TestCase
 from moves import Move, pick_moves, move_input_parser, MOVES_PER_POKEMON
 
