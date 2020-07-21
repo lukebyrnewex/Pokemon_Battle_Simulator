@@ -5,7 +5,6 @@ import utilities
 from pathlib import Path
 
 # Module Constant Data
-TEST_LEVEL = 100
 STAT_AMOUNT = 6
 IV_MAX = 31
 IV_MAX_TOTAL = IV_MAX * 6
@@ -16,93 +15,179 @@ EV_MAX_TOTAL = EV_MAX * 2
 data_folder = Path(
     "D:/Luke/Documents/Programming/Python/Pokemon_Battle_Simulator/CSV/")
 file_pokemon_list = data_folder / "pokemon_list.csv"
-file_pokemon_lore = data_folder / "pokemon_lore.csv"
 file_pokemon_natures = data_folder / "pokemon_natures.csv"
 file_effectiveness = data_folder / "pokemon_type_effectiveness.csv"
 
 
 class Pokemon:
-    # TODO: class-level docstring
-    def __init__(
-            self, pokedex, name, level, types,
-            base_stats, pokemon_moves, nature, ivs, evs, gender):
+    def __init__(self, name):
         """Constructor for the Pokémon class. Included within is every
         characteristic that a Pokémon possesses.
 
-        Args:
-            pokedex (int): The Pokémon's Pokédex number.
-            name (str): The Pokémon's name.
-            level (int): The Pokémon's level.
-            types (list[str]): The Pokémon's type (or types), max. 2 types.
-            base_stats (list[int]): The Pokémon's standard, basic statistics.
-            pokemon_moves (list[moves.Move]): The Pokémon's moves.
-            nature (str): The Pokémon's nature (boosts/weakens specific stats).
-            ivs (list[int]): The Pokémon's "Individual Values" (genetic stats).
-            evs (list[int]): The Pokémon's "Effort Values" (trained stats).
-
         Attributes:
-            pokedex (int): The Pokémon's Pokédex number.
-            name (str): The Pokémon's name.
-            level (int): The Pokémon's level.
-            types (list[str]): The Pokémon's type (or types), max. 2 types.
-            type_effect (list[float]): Type effectiveness against this Pokémon.
-            base_stats (list[int]): The Pokémon's standard, basic statistics.
-            pokemon_moves (list[moves.Move]): The Pokémon's moves.
-            nature (str): The Pokémon's nature (boosts/weakens specific stats).
-            ivs (list[int]): The Pokémon's "Individual Values" (genetic stats).
-            evs (list[int]): The Pokémon's "Effort Values" (trained stats).
-            hp (int): Pokémon's Health Points including IVs and EVs.
-            attack (int): Pokémon's Attack Points incl. nature/IVs/EVs.
-            defense (int): Pokémon's Defense Points incl. nature/IVs/EVs.
-            spatk (int): Pokémon's Special Attack Points incl. nature/IVs/EVs.
-            spdef (int): Pokémon's Special Defense Points incl. nature/IVs/EVs.
-            speed (int): Pokémon's Speed Points incl. nature/IVs/EVs.
-            # item (?): The Pokémon's held item, which may effect stats etc.
-            # abiliity (?): The Pokémon's ability, which may effect stats etc.
-            # gender (?): The Pokémon's gender, either Male/Female/Genderless.
-            # non_vol_status (?): Status such as Burn and Freeze.
-            # vol_status (?): Status such as Infatuation and Confusion.
-            # vol_btl_status (?): Battle status such as Follow Me.
+        pokedex (int): The Pokémon's Pokédex number.
+        name (str): The Pokémon's name.
+        types (list[str]): The Pokémon's type (or types), max. 2 types.
+        base_stats (list[int]): The Pokémon's standard, basic statistics.
+        gender (str): The Pokémon's gender, either Male/Female/Genderless.
+        level (int): The Pokémon's level.
+        pokemon_moves (list[moves.Move]): The Pokémon's moves.
+        nature (str): The Pokémon's nature (boosts/weakens specific stats).
+        ivs (list[int]): The Pokémon's "Individual Values" (genetic stats).
+        evs (list[int]): The Pokémon's "Effort Values" (trained stats).
+        hp (int): Pokémon's Health Points including IVs and EVs.
+        attack (int): Pokémon's Attack Points incl. nature/IVs/EVs.
+        defense (int): Pokémon's Defense Points incl. nature/IVs/EVs.
+        spatk (int): Pokémon's Special Attack Points incl. nature/IVs/EVs.
+        spdef (int): Pokémon's Special Defense Points incl. nature/IVs/EVs.
+        speed (int): Pokémon's Speed Points incl. nature/IVs/EVs.
+        type_effect (list[float]): Type effectiveness against this Pokémon.
+        # item (?): The Pokémon's held item, which may effect stats etc.
+        # abiliity (?): The Pokémon's ability, which may effect stats etc.
+        # non_vol_status (?): Status such as Burn and Freeze.
+        # vol_status (?): Status such as Infatuation and Confusion.
+        # vol_btl_status (?): Battle status such as Follow Me.
 
         """
-        # Basic Information
-        self.pokedex = pokedex
-        self.name = name
-        self.level = level
+        # Selection of Pokémon, and thus its inherent, unchangeable properties
+        self.gender = "Unknown"  # TODO: temporary fix repair (gender)
+        self.level = 1  # TODO: temporary fix repair (level)
+        with open(file_pokemon_list) as pokemon_csv:
+            csv_reader = csv.reader(pokemon_csv, delimiter=',')
+            for row in csv_reader:
+                if name.capitalize() == row[1]:
+                    # Initialise
+                    self.pokedex = int(row[0])
+                    self.name = row[1]
+                    self.types = [row[2], row[3]]
+                    self.base_stats = utilities.str_list_to_int(
+                        [row[4], row[5], row[6], row[7],
+                         row[8], row[9], row[10]]
+                    )
+                    if row[12] != "Undefined":
+                        self.gender = row[12]
+                    else:
+                        self.set_gender()
 
-        # Typing
-        self.types = types
+        # User selected parameters
+        self.set_level()
+        self.moves = moves.set_moves()
+        self.nature, self.ivs, self.evs = self.pick_stats()
+
+        # base_stats the effects of IVs, EVs, Nature and Level
+        final_stats = self.determine_stats()
+        self.hp = final_stats[0]
+        self.attack = final_stats[1]
+        self.defense = final_stats[2]
+        self.spatk = final_stats[3]
+        self.spdef = final_stats[4]
+        self.speed = final_stats[5]
+
+        # Effectiveness of each move type against this Pokémon
         self.type_effect = self.calculate_effectiveness()
 
-        # Base stats
-        self.base_stats = base_stats
-
-        # Known Moves (<=4)
-        self.moves = pokemon_moves
-
-        # Complex values to Pokémon
-        self.nature = nature
-        self.ivs = ivs
-        self.evs = evs
-
-        # Determined stats = Base stats + IV/EV/Nature/Level etc.
-        determined_stats = self.determine_stats()
-        self.hp = determined_stats[0]
-        self.attack = determined_stats[1]
-        self.defense = determined_stats[2]
-        self.spatk = determined_stats[3]
-        self.spdef = determined_stats[4]
-        self.speed = determined_stats[5]
-
         # TODO: Future battle additions -- create objects/CSVs for these
-        self.item = "token item"
-        self.ability = "token ability"
+        # self.item: item.Item
+        # self.ability = ability.Ability
+        # self.non_vol_status: status.NonVolatile (initialise to None)
+        # self.vol_status = status.Volatile (initialise to None)
+        # self.vol_btl_status = #status.VolatileBattle (initialise to None)
 
-        # Battle statuses and related variables
-        self.gender = gender
-        self.non_vol_status = "nan/BRN/FRZ/PAR/PSN/BPSN/SLP"
-        self.vol_status = "bound/curse/infatuation...etc."
-        self.vol_btl_status = "aqua ring/move charge/follow me"
+    def get_pokedex(self):
+        return self.pokedex
+
+    def get_name(self):
+        return self.name
+
+    def get_types(self):
+        return self.types
+
+    def get_base_stats(self):
+        return self.base_stats
+
+    def get_gender(self):
+        return self.gender
+
+    def set_gender(self):
+        """Function which checks whether the Pokémon has a specified gender:
+        if not, the user will select one."""
+        # Verify that gender is not predefined for this Pokémon
+        gender_options = ["Male", "Female"]
+        if self.gender in gender_options or self.gender == "Genderless":
+            print("Your Pokémon's gender cannot be changed.")
+            return
+        else:
+            while True:
+                gender_input = input(
+                    "Please select a gender in the Pokémon universe: "
+                    "Male or Female."
+                ).capitalize()
+                if gender_input in gender_options:
+                    self.gender = gender_input
+                    break
+
+    def get_level(self):
+        return self.level
+
+    def set_level(self):
+        """Setter for Pokémon level."""
+        while True:
+            level_input = input(
+                "Please select your Pokémon's level, between 1 and 100:"
+            )
+            if level_input.isnumeric():
+                level_input = int(level_input)
+                if 0 < level_input <= 100:
+                    self.level = level_input
+                    return
+                else:
+                    print("Your level is incorrect. Please try again.")
+            else:
+                print("Please insert a numeric value.")
+
+    def get_moves(self):
+        return self.moves
+
+    def set_moves(self):
+        moves.set_moves()
+
+    # def replace_move(self): TODO: replace_move function
+
+    def get_nature(self):
+        return self.nature
+
+    # TODO: create getters and setters from nature onwards
+
+    def calculate_effectiveness(self):
+        """
+        Return dictionary of effectiveness of each move type
+        against this Pokémon.
+        """
+        type_dict = {}
+        type_idx = []
+        with open(file_effectiveness) as effect_chart:
+            effect_reader = csv.reader(effect_chart, delimiter=",")
+            pkmn_type_row = next(effect_reader)
+            for idx, column in enumerate(pkmn_type_row):
+                if column in self.types:
+                    type_idx.append(idx)
+            for row in effect_reader:
+                if len(type_idx) > 1:
+                    type_dict[row[0]] = float(
+                        float(row[type_idx[0]]) * float(row[type_idx[1]]))
+                else:
+                    type_dict[row[0]] = float(
+                        row[type_idx[0]])
+            return type_dict
+
+    @staticmethod
+    def pick_stats():
+        """Calls functions to select a Pokémon's nature, IVs & EVs."""
+        print_all_natures()
+        selected_nature = pick_nature_parser()
+        selected_ivs, selected_evs = (
+            pokemon_value_input("iv"), pokemon_value_input("ev"))
+        return selected_nature, selected_ivs, selected_evs
 
     def determine_stats(self):
         """
@@ -127,28 +212,6 @@ class Pokemon:
                 determined_stats.append(math.floor((common_formula + 5) * 1.0))
         return determined_stats
 
-    def calculate_effectiveness(self):
-        """
-        Return dictionary of effectiveness of each move type
-        against this Pokémon.
-        """
-        type_dict = {}
-        type_idx = []
-        with open(file_effectiveness) as effect_chart:
-            effect_reader = csv.reader(effect_chart, delimiter=",")
-            pkmn_type_row = next(effect_reader)
-            for idx, column in enumerate(pkmn_type_row):
-                if column in self.types:
-                    type_idx.append(idx)
-            for row in effect_reader:
-                if len(type_idx) > 1:
-                    type_dict[row[0]] = float(
-                        float(row[type_idx[0]]) * float(row[type_idx[1]]))
-                else:
-                    type_dict[row[0]] = float(
-                        row[type_idx[0]])
-            return type_dict
-
     def print_pokemon(self):
         """Pretty print Pokémon's information and statistics."""
         pokedex_no = int(self.pokedex)
@@ -158,12 +221,15 @@ class Pokemon:
             pokedex_str = f'#0{self.pokedex}'
         else:
             pokedex_str = f'#{self.pokedex}'
-        print(f'{pokedex_str} {self.name} @ {self.item}')
+
+        # TODO: item and ability
+        print(f'{pokedex_str} {self.name} @ [INSERT HERE]')
         if len(self.types[1]) < 1:
-            print(f'{self.types[0]} Pokémon with {self.ability} Ability')
+            print(f'{self.types[0]} Pokémon with [INSERT HERE] Ability')
         else:
             print(f'{self.types[0]}/{self.types[1]} '
-                  f'Pokémon with {self.ability} Ability')
+                  f'Pokémon with [INSERT HERE] Ability')
+
         print(f'Level: {self.level}')
         print(
             f'EVs: {self.evs[0]} HP / {self.evs[1]} Atk / '
@@ -186,52 +252,6 @@ class Pokemon:
             f'\n{self.moves[2].name}\t{self.moves[3].name}\t')
 
 
-def pick_pokemon():
-    """
-    User inputs a Pokémon name, and selects its moves, nature, IVs and EVs.
-
-    Returns:
-         Pokemon (pokemon.Pokemon): Selected Pokémon with inputted statistics.
-    """
-    with open(file_pokemon_list) as pokemon_csv:
-        csv_reader = csv.reader(pokemon_csv, delimiter=',')
-        pokemon_choice = input("Type a Pokémon's name:")  # TODO: str-check
-        for row in csv_reader:
-            if pokemon_choice == row[1]:
-                typing = [row[2], row[3]]
-                base_stats = [
-                    row[4], row[5], row[6],  # HP, Attack, Defense
-                    row[7], row[8], row[9],  # SpAtk, SpDef, Speed
-                    row[10]]  # Base Stat Total
-                base_stats = utilities.str_list_to_int(base_stats)
-                selected_moves = moves.pick_moves()
-                nature, ivs, evs = pick_stats()
-                gender = define_gender(int(row[0]), row[1])
-                return Pokemon(
-                    int(row[0]), row[1], TEST_LEVEL,
-                    typing, base_stats, selected_moves,
-                    nature, ivs, evs, gender)
-        print(f'{pokemon_choice} could not be found. Try again.')
-        pick_pokemon()
-
-
-def pick_stats():
-    """Calls functions to select and describe a Pokémon's nature, IVs & EVs."""
-    print_all_natures()
-    print(utilities.csv_extractor(
-        file_pokemon_lore, "title", "nature_values", "description"))
-    selected_nature = pick_nature_parser()
-
-    # IVs and EVs
-    print(utilities.csv_extractor(
-        file_pokemon_lore, "title", "individual_values", "description"))
-    print(utilities.csv_extractor(
-        file_pokemon_lore, "title", "effort_values", "description"))
-    selected_ivs, selected_evs = (
-        pokemon_value_input("iv"), pokemon_value_input("ev"))
-    return selected_nature, selected_ivs, selected_evs
-
-
 def print_nature(nature):
     """Pretty prints the nature's boosted and weakened statistics."""
     with open(file_pokemon_natures) as natures_csv:
@@ -248,33 +268,7 @@ def print_all_natures():
     with open(file_pokemon_natures) as natures_csv:
         csv_reader = csv.reader(natures_csv, delimiter=',')
         for row in csv_reader:
-            print(f'{row[0]} (+{row[1]}, -{row[2]}')
-
-
-def pick_nature_parser():
-    """
-    Parser to whether an inputted nature is found within the list.
-
-    Returns:
-        nature_input (str): Returns a nature, which has been deemed acceptable.
-
-    """
-    accepted_natures = []
-    with open(file_pokemon_natures) as natures_csv:
-        natures_reader = csv.reader(natures_csv, delimiter=',')
-        next(natures_reader)  # Skip first line
-        for row in natures_reader:
-            accepted_natures.append(row[0])
-
-    while True:
-        try:
-            nature_input = input("Choose a nature from the list:")
-            if nature_input not in accepted_natures:
-                print(f'Please choose an accepted nature.')
-            else:
-                return nature_input
-        except ValueError:
-            print("That's not a correct nature! Try again.")
+            print(f'{row[0]} (+{row[1].strip()}, -{row[2].strip()}')
 
 
 def define_nature(nature):
@@ -308,42 +302,6 @@ def define_nature(nature):
                 pro = nature_dict[row[1].strip()]
                 con = nature_dict[row[2].strip()]
         return pro, con
-
-
-def define_gender(pokedex_number, pokemon_name):
-    """Function which checks whether the Pokémon has a specified gender:
-    if not, the user will select one.
-
-    Args:
-        pokedex_number (int): The Pokémon's number.
-        pokemon_name (str): The Pokémon's name, as some Pokémon, such as
-            Indeedee, have two separate gendered forms under the same Pokédex.
-
-    Returns:
-        gender_choice (str): The selected gender, whether pre-defined or
-            user-inputted.
-    """
-    gender_options = ["Male", "Female", "Genderless"]
-    with open(file_pokemon_list) as gender_list:
-        gender_reader = csv.reader(gender_list, delimiter=",")
-        next(gender_reader)  # Skip header line
-        for row in gender_reader:
-            if int(row[0]) == pokedex_number and row[1] == pokemon_name:
-                if row[12] == "Undefined":
-                    # If Pokémon's gender is not pre-set, then select one
-                    while True:
-                        gender_choice = input(
-                            "Please input 'Male', 'Female' or 'Genderless'"
-                        )
-                        if gender_choice not in gender_options:
-                            print(
-                                "That gender is not yet in the Pokémon world, "
-                                "please try again."
-                            )
-                        else:
-                            return gender_choice
-                else:
-                    return row[12]
 
 
 def pokemon_value_input(value_type):
@@ -380,6 +338,32 @@ def pokemon_value_input(value_type):
     else:
         print("Please input either 'IV' or 'EV' into function.")
         return None
+
+
+def pick_nature_parser():
+    """
+    Parser to whether an inputted nature is found within the list.
+
+    Returns:
+        nature_input (str): Returns a nature, which has been deemed acceptable.
+
+    """
+    accepted_natures = []
+    with open(file_pokemon_natures) as natures_csv:
+        natures_reader = csv.reader(natures_csv, delimiter=',')
+        next(natures_reader)  # Skip first line
+        for row in natures_reader:
+            accepted_natures.append(row[0])
+
+    while True:
+        try:
+            nature_input = input("Choose a nature from the list:")
+            if nature_input not in accepted_natures:
+                print(f'Please choose an accepted nature.')
+            else:
+                return nature_input
+        except ValueError:
+            print("That's not a correct nature! Try again.")
 
 
 def pokemon_value_parser(value_type, value_list):
