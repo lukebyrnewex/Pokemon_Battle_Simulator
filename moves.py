@@ -42,9 +42,8 @@ class Move:
               f'\nDescription: {self.effect}')
 
 
-def pick_moves():
+def set_moves():
     """Selects a Pokémon's move from the list and returns them."""
-    # TODO: ensure the same move isn't selected twice
     moves = []
     with open(file_moves_csv) as pokemon_moves_list:
         movelist = csv.reader(pokemon_moves_list, delimiter=',')
