@@ -1,19 +1,34 @@
 import unittest
 from unittest import mock
-import pokemon
+from pokemon import Pokemon
+from moves import Move
+
+pound = Move(
+    "Pound", "Deals damage with no additional effect.", "Normal", "Physical",
+    40, 100, 35
+)
+leer = Move(
+    "Leer", "Lowers the target's Defense by 1 stage.", "Normal", "Status",
+    0, 100, 30
+)
+sing = Move(
+    "Sing", "Puts the target to sleep.", "Normal", "Status",
+    0, 55, 15
+)
+supersonic = Move(
+    "Supersonic", "Confuses the target.", "Normal", "Status",
+    0, 55, 20
+)
+example_moves = [pound, leer, sing, supersonic]
 
 
-class TestPokemon(unittest.TestCase):
-    def test_determine_stats(self):
+class TestDetermineStats(unittest.TestCase):
+    def test_each_stat_correctly_divided(self):
         # Example Pokémon (from bulbapedia.bulbagarden.net/wiki/Statistic)
-        garchomp = pokemon.Pokemon(
-            445, "Garchomp", 78, ["Ice"],
-            [108, 130, 95, 80, 85, 102, 600],
-            ["Pound", "Fire Punch", "Ice Punch", "ThunderPunch"],
-            "Adamant",
+        garchomp = Pokemon(
+            "Garchomp", "Male", 78, example_moves, "Adamant",
             [24, 12, 30, 16, 23, 5],
-            [74, 190, 91, 48, 84, 23],
-            "Male"
+            [74, 190, 91, 48, 84, 23]
         )
         self.assertEqual(garchomp.hp, 289)
         self.assertEqual(garchomp.attack, 278)
@@ -22,25 +37,19 @@ class TestPokemon(unittest.TestCase):
         self.assertEqual(garchomp.spdef, 171)
         self.assertEqual(garchomp.speed, 171)
 
-    def test_calculate_effectiveness(self):
+
+class TestCalculateEffectiveness(unittest.TestCase):
+    def test_correct_eff_dict_creation(self):
         # Example Pokémon Litleo (Fire/Normal) and Misdreavus (Ghost)
-        litleo = pokemon.Pokemon(
-            667, "Litleo", 100, ["Fire", "Normal"],
-            [62, 50, 58, 73, 54, 72, 369],
-            ["Pound", "Fire Punch", "Ice Punch", "ThunderPunch"],
-            "Adamant",
+        litleo = Pokemon(
+            "Litleo", "Female", 100, example_moves, "Adamant",
             [31, 31, 31, 31, 31, 31],
-            [252, 0, 0, 252, 0, 4],
-            "Male"
+            [252, 0, 0, 252, 0, 4]
         )
-        misdreavus = pokemon.Pokemon(
-            200, "Misdreavus", 100, ["Ghost"],
-            [60, 60, 60, 85, 85, 85, 435],
-            ["Pound", "Fire Punch", "Ice Punch", "ThunderPunch"],
-            "Adamant",
+        misdreavus = Pokemon(
+            "Misdreavus", "Female", 100, example_moves, "Adamant",
             [31, 31, 31, 31, 31, 31],
-            [252, 0, 0, 252, 0, 4],
-            "Female"
+            [252, 0, 0, 252, 0, 4]
         )
 
         # Example Pokémon correct type effectiveness dictionaries
@@ -61,26 +70,6 @@ class TestPokemon(unittest.TestCase):
 
         self.assertDictEqual(litleo.type_effect, litleo_effectiveness)
         self.assertDictEqual(misdreavus.type_effect, misdreavus_effectiveness)
-
-    def test_gender_normal_circumstances(self):
-        """Verify that predefined gender is correctly outputted."""
-        self.assertEqual(pokemon.define_gender(628, "Braviary"), "Male")
-        self.assertEqual(pokemon.define_gender(854, "Sinistea"), "Genderless")
-        self.assertEqual(pokemon.define_gender(858, "Hatterene"), "Female")
-
-    def test_gender_same_pokedex(self):
-        """Pokémon with same Pokédex, but different gendered forms."""
-        self.assertEqual(pokemon.define_gender(876, "Indeedee-M"), "Male")
-        self.assertEqual(pokemon.define_gender(876, "Indeedee-F"), "Female")
-
-    @mock.patch('pokemon.input', side_effect=["hello", "this", 12, "Female"])
-    def test_gender_user_input(self, mock_input):
-        self.assertEqual(pokemon.define_gender(200, "Misdreavus"), "Female")
-
-
-# TODO: tests for pick_pokemon(), pick_stats(), pick_nature_parser(),
-# TODO: define_nature(), pokemon_value_input(), pokemon_value_parser(),
-# TODO: and check_if_iv_or_ev()
 
 
 if __name__ == '__main__':
