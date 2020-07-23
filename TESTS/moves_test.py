@@ -1,6 +1,6 @@
 import unittest
 from unittest import mock, TestCase
-from moves import Move, pick_moves, move_input_parser, MOVES_PER_POKEMON
+from moves import Move, set_moves, move_input_parser, MOVES_PER_POKEMON
 
 # Example Moves
 pound = Move(
@@ -33,7 +33,7 @@ class TestMoves(TestCase):
 	def test_pick_moves_functionality(self, mock_input):
 		"""Ensure that move attributes are inputted correctly, and that
 		repeated inputs are skipped."""
-		picked_moves = pick_moves()
+		picked_moves = set_moves()
 		for i in range(MOVES_PER_POKEMON - 1):
 			self.assertTrue(example_moves[i].__dict__, picked_moves[i].__dict__)
 
