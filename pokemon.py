@@ -178,7 +178,7 @@ class Pokemon:
 		"""Verify that EVs respect their bounds."""
 		# Amount
 		if len(self.ivs) != STAT_AMOUNT:
-			raise Exception("You don't have 6 IVs.")
+			raise ValueError("You don't have 6 IVs.")
 
 		# Values
 		ev_total = 0
@@ -187,7 +187,7 @@ class Pokemon:
 				if 0 < value <= EV_MAX:
 					ev_total += value
 					if ev_total > EV_MAX_TOTAL:
-						raise Exception(
+						raise ValueError(
 							f'You have too many EVs (max {EV_MAX_TOTAL})')
 			print("Your EVs are correct.")
 		except ValueError:
