@@ -226,12 +226,13 @@ class Pokemon:
 				)
 				ivs_list = ivs_input.split("/")
 				try:
-					ivs_list = [int(i) for i in evs_list]  # Convert EVs to int
+					ivs_list = [int(i) for i in ivs_list]  # Convert EVs to int
+					self.ivs = ivs_list
 					self.check_ivs()
 				except ValueError:
 					print("You inputted a non-numeric character.")
 					self.ivs = "reset"
-					self.set_ivs()
+					self.set_ivs(self.ivs)
 
 	def check_ivs(self):
 		"""Verify that IVs respect their bounds."""
@@ -270,11 +271,12 @@ class Pokemon:
 				evs_list = evs_input.split("/")
 				try:
 					evs_list = [int(i) for i in evs_list]  # Convert EVs to int
+					self.evs = evs_list
 					self.check_evs()
 				except ValueError:
 					print("You inputted a non-numeric character.")
 					self.evs = "reset"
-					self.set_evs()
+					self.set_evs(self.evs)
 
 	def check_evs(self):
 		"""Verify that EVs respect their bounds."""
