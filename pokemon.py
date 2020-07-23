@@ -117,81 +117,186 @@ class Pokemon:
 
 		print(f'{self.name.capitalize()} has successfully initialised.')
 
-	def check_gender(self):
-		"""Verification that gender is inputted correctly: rectify if not."""
+	# GENDER #
+	def get_gender(self):
+		"""Getter for Pokémon's gender."""
+		return self.gender
+
+	def set_gender(self, gender):
+		"""Setter for Pokémon's gender."""
 		gender_options = ["Male", "Female"]
-		if self.info[11] != "Undefined":
-			self.gender = self.info[11]
-		elif self.gender not in gender_options:
-			gender_found = True
-			while gender_found:
+		if gender.capitalize() in gender_options:
+			self.gender = gender.capitalize()
+		else:
+			gender_set = True
+			while gender_set:
 				gender_input = input("Please select either Male or Female:")
 				if gender_input in gender_options:
 					self.gender = gender_input
-					gender_found = False
+					gender_set = False
+
+	def check_gender(self):
+		"""Verification that gender is inputted correctly: rectify if not."""
+		if self.info[11] != "Undefined":
+			self.gender = self.info[11]
+		self.set_gender(self.gender)
+
+	# LEVEL #
+	def get_level(self):
+		"""Getter for Pokémon's level."""
+		return self.level
+
+	def set_level(self, level):
+		"""Setter for Pokémon's level."""
+		try:
+			self.level = int(level)
+			self.check_level()
+		except ValueError:
+			print("Your level was not an integer. Try again.")
 
 	def check_level(self):
-		"""Verification that level is within its correct bounds."""
-		try:
-			self.level = int(self.level)
+		"""Verification that level is within its correct bounds,
+		rectify if not."""
+		level_bool = True
+		while level_bool:
 			if 0 < self.level <= 100:
-				print("Your level is correct.")
-		except ValueError:
-			print("Your level is incorrect.")
+				level_bool = False
+			else:
+				level_input = input("Please input a correct level:")
+				self.level = int(level_input)
+
+	# MOVES #
+	def get_moves(self):
+		"""Getter for Pokémon moves (in object form)."""
+		return self.moves
+
+	def set_moves(self, pokemon_moves):
+		"""Setter for Pokémon moves (from moves.py)."""
+		self.moves = pokemon_moves
+		self.check_moves()
 
 	def check_moves(self):
 		"""Verification that moves are correct."""
-		try:
-			if isinstance(self.moves, list):
-				for move in self.moves:
-					if isinstance(move, moves.Move):
-						continue
-				print("Your moves are correct.")
-		except ValueError:
-			print("Your moves are not a Move object.")
+		if isinstance(self.moves, list):
+			for move in self.moves:
+				if isinstance(move, moves.Move):
+					continue
+			print("Your moves are correct.")
+		else:
+			self.moves = moves.set_moves()
+
+	# NATURE #
+	def get_nature(self):
+		"""Getter for Pokémon nature."""
+		return self.nature
+
+	def set_nature(self, nature):
+		"""Setter for Pokémon nature."""
+		# Check input
+		self.nature = nature
+		self.check_nature()
 
 	def check_nature(self):
 		"""Verify nature, and document which stats it boosts and weakens."""
 		try:
-			this_nature = nature_df.loc[self.nature]
+			this_nature = nature_df.loc[self.nature.capitalize()]
 			self.pro_nat, self.con_nat = this_nature[0], this_nature[1]
 			print("Your nature is correct.")
 		except KeyError:
-			print("Your nature could not be found.")
+			nature_input = input(
+				"Your nature could not be found. Please enter another:"
+			)
+			self.set_nature(nature_input)
+
+	# IVs #
+	def get_ivs(self):
+		"""Getter for Pokémon IVs."""
+		return self.ivs
+
+	def set_ivs(self, ivs):
+		"""Setter for Pokémon IVs."""
+		if ivs != "reset":
+			self.check_ivs()
+		else:
+			ivs_set = True
+			while ivs_set:
+				ivs_input = input(
+					"Please input 6 IVs, divided by forward-slashes '/': "
+					"HP/Attack/Defense/Sp. Attack/Sp. Defense/Speed."
+				)
+				ivs_list = ivs_input.split("/")
+				try:
+					ivs_list = [int(i) for i in evs_list]  # Convert EVs to int
+					self.check_ivs()
+				except ValueError:
+					print("You inputted a non-numeric character.")
+					self.ivs = "reset"
+					self.set_ivs()
 
 	def check_ivs(self):
 		"""Verify that IVs respect their bounds."""
 		# Amount
+		reset_ivs = "reset"
 		if len(self.ivs) != STAT_AMOUNT:
-			raise Exception("You don't have 6 IVs.")
+			print("You don't have 6 IVs. Try again.")
+			self.set_evs(reset_ivs)
 
 		# Values
 		try:
 			for value in self.ivs:
-				if 0 < value <= IV_MAX:
+				if 0 < value <= IV_MAX and isinstance(int, value):
 					continue
 			print("Your IVs are correct.")
 		except ValueError:
 			print("One of your IVs is not between 0 and 31.")
+			self.set_ivs(reset_ivs)
+
+	# EVs #
+	def get_evs(self):
+		"""Getter for Pokémon Effort Values (EVs)."""
+		return self.evs
+
+	def set_evs(self, evs):
+		"""Setter for Pokémon Effort Values (EVs)."""
+		if evs != "reset":
+			self.check_evs()
+		else:
+			evs_set = True
+			while evs_set:
+				evs_input = input(
+					"Please input 6 EVs, divided by forward-slashes '/': "
+					"HP/Attack/Defense/Sp. Attack/Sp. Defense/Speed."
+				)
+				evs_list = evs_input.split("/")
+				try:
+					evs_list = [int(i) for i in evs_list]  # Convert EVs to int
+					self.check_evs()
+				except ValueError:
+					print("You inputted a non-numeric character.")
+					self.evs = "reset"
+					self.set_evs()
 
 	def check_evs(self):
 		"""Verify that EVs respect their bounds."""
 		# Amount
-		if len(self.ivs) != STAT_AMOUNT:
-			raise ValueError("You don't have 6 IVs.")
+		reset_evs = "reset"
+		if len(self.evs) != STAT_AMOUNT:
+			print("You don't have 6 EVs. Try again.")
+			self.set_evs(reset_evs)
 
 		# Values
 		ev_total = 0
 		try:
 			for value in self.evs:
-				if 0 < value <= EV_MAX:
+				if 0 < value <= EV_MAX and isinstance(int, value):
 					ev_total += value
 					if ev_total > EV_MAX_TOTAL:
-						raise ValueError(
-							f'You have too many EVs (max {EV_MAX_TOTAL})')
+						print(f'You have too many EVs (max {EV_MAX_TOTAL})')
+						self.set_evs(reset_evs)
 			print("Your EVs are correct.")
 		except ValueError:
-			print("One of your IVs is not between 0 and 31.")
+			print("One of your IVs is not between 0 and 31, or not an int.")
+			self.set_evs(reset_evs)
 
 	def calculate_effectiveness(self):
 		"""
